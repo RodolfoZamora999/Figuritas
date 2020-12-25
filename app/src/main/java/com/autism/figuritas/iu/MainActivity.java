@@ -1,10 +1,11 @@
 package com.autism.figuritas.iu;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
 import com.autism.figuritas.R;
+import com.autism.figuritas.iu.config.InitConfigActivity;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -18,6 +19,16 @@ public class MainActivity extends AppCompatActivity
 
         //Ocultar barra
         hideSystemUI();
+    }
+
+    /**
+     * Método para iniciar sesión del usuario
+     * @param view
+     */
+    public void initSesion(View view)
+    {
+        //Todo: Configurar esta parte
+        startActivity(new Intent(this, InitConfigActivity.class));
     }
 
     @Override

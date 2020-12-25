@@ -9,12 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Figuritas">
-
+        <activity
+            android:name=".iu.config.InitConfigActivity"
+            android:screenOrientation="landscape">
+        </activity>
         <activity
             android:name=".iu.MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -4,22 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:background="#03A9F4"
-
-
     tools:context=".iu.MainActivity">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginTop="24dp"
+        android:text="@string/app_name"
+        android:textColor="@color/black"
         android:textSize="46sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnIniciarS"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="357dp"
+        android:layout_marginEnd="334dp"
+        android:text="@string/btnIniciar"
+        android:textAllCaps="false"
+        android:onClick="initSesion"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegistro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.576"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <Button
+        android:id="@+id/btnRegistro"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginEnd="326dp"
+        android:layout_marginBottom="48dp"
+        android:text="@string/btnRegistro"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnIniciarS"
+        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintStart_toStartOf="@+id/btnIniciarS" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

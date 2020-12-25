@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/config_nav">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/config_nav"
+    app:startDestination="@id/colorsFragment">
 
+    <fragment
+        android:id="@+id/colorsFragment"
+        android:name="com.autism.figuritas.iu.config.ColorsFragment"
+        android:label="fragment_colors"
+        tools:layout="@layout/fragment_colors" >
+        <action
+            android:id="@+id/action_colorsFragment_to_soundFragment"
+            app:destination="@id/soundFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/soundFragment"
+        android:name="com.autism.figuritas.iu.config.SoundFragment"
+        android:label="fragment_sound"
+        tools:layout="@layout/fragment_sound" >
+        <action
+            android:id="@+id/action_soundFragment_to_levelFragment"
+            app:destination="@id/levelFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/levelFragment"
+        android:name="com.autism.figuritas.iu.config.LevelFragment"
+        android:label="fragment_level"
+        tools:layout="@layout/fragment_level" />
 </navigation>
