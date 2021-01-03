@@ -13,7 +13,7 @@
         <action
             android:id="@+id/action_colorsFragment_to_soundFragment"
             app:destination="@id/soundFragment"
-            app:enterAnim="@android:anim/slide_in_left" />
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/soundFragment"
@@ -23,7 +23,7 @@
         <action
             android:id="@+id/action_soundFragment_to_levelFragment"
             app:destination="@id/levelFragment"
-            app:enterAnim="@android:anim/slide_in_left" />
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/levelFragment"

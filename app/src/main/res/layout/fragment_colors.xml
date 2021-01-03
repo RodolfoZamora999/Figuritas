@@ -2,21 +2,108 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentColor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:background="#2196F3"
-
+    android:background="#EFEFEF"
     tools:context=".iu.config.ColorsFragment">
 
+
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fragmento de colores"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.549"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.076" />
 
+    <ImageView
+        android:id="@+id/color1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#E57373"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"/>
+
+    <ImageView
+        android:id="@+id/color3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#BA68C8"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/color2"
+        app:layout_constraintStart_toEndOf="@+id/color2"
+        app:layout_constraintTop_toTopOf="@+id/color2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/color5"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#81C784"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@+id/color4"
+        app:layout_constraintTop_toBottomOf="@+id/color2"/>
+
+    <ImageView
+        android:id="@+id/color4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#4DB6AC"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/color1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/color1"
+        app:layout_constraintTop_toBottomOf="@+id/color1" />
+
+    <ImageView
+        android:id="@+id/color2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#F06292"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/color1"
+        app:layout_constraintStart_toEndOf="@+id/color1"
+        app:layout_constraintTop_toTopOf="@+id/color1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/color6"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#AED581"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@+id/color5"
+        app:layout_constraintTop_toBottomOf="@+id/color3" />
+
+    <ImageView
+        android:id="@+id/color7"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#9575CD"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/color3"
+        app:layout_constraintStart_toEndOf="@+id/color3"
+        app:layout_constraintTop_toTopOf="@+id/color3"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/color8"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#DCE775"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@+id/color6"
+        app:layout_constraintTop_toBottomOf="@+id/color7"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
