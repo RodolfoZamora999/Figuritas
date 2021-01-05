@@ -5,7 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import com.autism.figuritas.R;
-import com.autism.figuritas.iu.config.InitConfigActivity;
+import com.autism.figuritas.iu.session.RegisterActivity;
+import com.autism.figuritas.iu.session.SessionActivity;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -21,24 +22,48 @@ public class MainActivity extends AppCompatActivity
         hideSystemUI();
     }
 
+
     /**
-     * Método para iniciar sesión del usuario
+     * Init User Session Activity for login
      * @param view
      */
     public void initSesion(View view)
     {
-        //Todo: Configurar esta parte
-        startActivity(new Intent(this, InitConfigActivity.class));
-    }
+        Intent intent = new Intent(this, SessionActivity.class);
+        startActivity(intent);
 
-    @Override
-    protected void onDestroy()
-    {
-        super.onDestroy();
+        //Todo: Ver que onda con esto, tal vez tenga que hacer uno por usuario
+        //Hacer comprobación de "primera entrada"
+
+        /*SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean contains = preferences.contains("config");
+
+        if (contains)
+        {
+            boolean status = preferences.getBoolean("config", false);
+
+            if(status)
+                startActivity(new Intent(this, LevelActivity.class));
+            else
+                startActivity(new Intent(this, InitConfigActivity.class));
+        }
+        else
+            startActivity(new Intent(this, InitConfigActivity.class));*/
     }
 
     /**
-     * Hacer "fullScreen" la aplicación.
+     * Init Register Activity to register a new user
+     * @param view
+     */
+    public void initRegisterUser(View view)
+    {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
+
+    /**
+     * Do fullscreen activity
      */
     private void hideSystemUI()
     {

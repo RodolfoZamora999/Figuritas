@@ -1,13 +1,16 @@
 package com.autism.figuritas.iu.config;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
-
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.Toast;
 import com.autism.figuritas.R;
+import com.autism.figuritas.iu.levels.LevelActivity;
 
 /**
  * Fragmento para la configuración del nivel
@@ -25,5 +28,40 @@ public class LevelFragment extends Fragment
     {
         return inflater.inflate(R.layout.fragment_level, container, false);
     }
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+
+        getActivity().findViewById(R.id.fragmentLevel).setOnClickListener(v -> nextFragment(v));
+    }
+
+    /**
+     * Method to invoke Level Activity
+     * @param view
+     */
+    private void nextFragment(View view)
+    {
+
+        //Todo: Modificación pendiente
+        //Config complete
+        /*SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        boolean status = preferences.edit().putBoolean("config", true).commit();
+
+        if(status)
+        {
+            Intent intent = new Intent(getContext(), LevelActivity.class);
+            startActivity(intent);
+        }
+        else
+        {
+            Toast.makeText(getContext(), "Error de almacenamiento...", Toast.LENGTH_LONG).show();
+        }
+         */
+
+        startActivity(new Intent(getContext(), LevelActivity.class));
+    }
+
 
 }

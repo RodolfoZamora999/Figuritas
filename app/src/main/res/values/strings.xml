@@ -1,7 +1,20 @@
 <resources>
+    <!--Generic string-->
     <string name="app_name">Figuritas</string>
+
+    <!--Main Activity-->
     <string name="btnIniciar">Iniciar Sesión</string>
     <string name="btnRegistro">Registrate</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Session Activity-->
+    <string name="inicio_sesion">Inicio de sesión</string>
+    <string name="Iniciar">Entrar</string>
+    <string name="olvidaste">¿Olvidaste tu contraseña?</string>
+
+    <!--Register Activity-->
+    <string name="registro_usuario">Registro de usuario</string>
+    <string name="registrar">Registrar</string>
+    <string name="descartar">Descartar</string>
+
+
 </resources>
