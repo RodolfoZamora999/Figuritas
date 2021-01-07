@@ -1,9 +1,9 @@
 package com.autism.figuritas.iu;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
 import com.autism.figuritas.R;
 import com.autism.figuritas.iu.session.RegisterActivity;
 import com.autism.figuritas.iu.session.SessionActivity;
@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_main);
 
-        //Ocultar barra
         hideSystemUI();
     }
 
@@ -31,24 +30,6 @@ public class MainActivity extends AppCompatActivity
     {
         Intent intent = new Intent(this, SessionActivity.class);
         startActivity(intent);
-
-        //Todo: Ver que onda con esto, tal vez tenga que hacer uno por usuario
-        //Hacer comprobación de "primera entrada"
-
-        /*SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean contains = preferences.contains("config");
-
-        if (contains)
-        {
-            boolean status = preferences.getBoolean("config", false);
-
-            if(status)
-                startActivity(new Intent(this, LevelActivity.class));
-            else
-                startActivity(new Intent(this, InitConfigActivity.class));
-        }
-        else
-            startActivity(new Intent(this, InitConfigActivity.class));*/
     }
 
     /**

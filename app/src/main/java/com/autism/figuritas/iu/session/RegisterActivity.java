@@ -1,8 +1,9 @@
 package com.autism.figuritas.iu.session;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.autism.figuritas.R;
 
@@ -32,4 +33,5 @@ public class RegisterActivity extends AppCompatActivity
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
+
 }

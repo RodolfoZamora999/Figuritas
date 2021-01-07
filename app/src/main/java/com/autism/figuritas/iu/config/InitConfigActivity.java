@@ -1,8 +1,9 @@
 package com.autism.figuritas.iu.config;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.autism.figuritas.R;
 

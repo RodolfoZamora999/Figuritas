@@ -15,6 +15,11 @@
     <string name="registro_usuario">Registro de usuario</string>
     <string name="registrar">Registrar</string>
     <string name="descartar">Descartar</string>
+    <string name="nombre">Nombre</string>
+    <string name="apell_p">Apellido Paterno</string>
+    <string name="apell_m">Apellido Materno</string>
+    <string name="email">Email</string>
+    <string name="contrasena">Contraseña</string>
 
 
 </resources>

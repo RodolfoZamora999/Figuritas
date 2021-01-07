@@ -1,12 +1,12 @@
 package com.autism.figuritas.iu.session;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.text.method.TransformationMethod;
 import android.view.View;
 import android.widget.EditText;
+import androidx.appcompat.app.AppCompatActivity;
 import com.autism.figuritas.R;
 import com.autism.figuritas.iu.config.InitConfigActivity;
 
@@ -32,6 +32,21 @@ public class SessionActivity extends AppCompatActivity
         //Todo: Ver que onda con esto, el shared prefeferenfces para cada usuario
         Intent intent = new Intent(this, InitConfigActivity.class);
         startActivity(intent);
+
+         /*
+        //Check config if is complete
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean config_complete = sharedPreferences.getBoolean("config_complete",false);
+
+        Intent intent = new Intent();
+
+        if(config_complete)
+            intent.setClass(this, LevelActivity.class);
+        else
+            intent.setClass(this, InitConfigActivity.class);
+
+        startActivity(intent);*/
+
     }
 
     /**

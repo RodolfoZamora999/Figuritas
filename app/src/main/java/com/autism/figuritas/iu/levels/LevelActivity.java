@@ -1,8 +1,10 @@
 package com.autism.figuritas.iu.levels;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.autism.figuritas.R;
 
 public class LevelActivity extends AppCompatActivity

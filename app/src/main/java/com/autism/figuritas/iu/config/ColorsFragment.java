@@ -1,12 +1,13 @@
 package com.autism.figuritas.iu.config;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
 import com.autism.figuritas.R;
 
 /**
