@@ -7,12 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".iu.levels.LevelActivity">
 
+    <include layout="@layout/activity_level_interface" />
+
     <ImageView
         android:id="@+id/imgScuare"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="104dp"
         android:elevation="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,7 +24,7 @@
         android:id="@+id/imgTraingle"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginStart="104dp"
+        android:layout_marginStart="50dp"
         android:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="@+id/imgScuare"
         app:layout_constraintStart_toEndOf="@+id/imgScuare"
@@ -34,13 +36,11 @@
         android:id="@+id/imgCircle"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="50dp"
         android:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="@+id/imgTraingle"
         app:layout_constraintStart_toEndOf="@+id/imgTraingle"
         app:layout_constraintTop_toTopOf="@+id/imgTraingle"
         app:srcCompat="@drawable/ic_circle" />
-
-    <include layout="@layout/activity_level_interface"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

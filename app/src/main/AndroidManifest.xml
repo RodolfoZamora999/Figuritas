@@ -10,8 +10,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Figuritas">
-        <activity android:name=".iu.session.RegisterActivity"></activity>
-        <activity android:name=".iu.session.SessionActivity" />
+        <activity
+            android:name=".iu.session.RegisterActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".iu.session.SessionActivity"
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".iu.levels.LevelActivity"
             android:screenOrientation="landscape" />

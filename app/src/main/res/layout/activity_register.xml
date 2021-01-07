@@ -98,6 +98,26 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editApellidoP" />
 
+            <TextView
+                android:id="@+id/txtEdad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edad"
+                app:layout_constraintBottom_toTopOf="@+id/editEdad"
+                app:layout_constraintEnd_toEndOf="@+id/editEdad"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/editEdad" />
+
+            <EditText
+                android:id="@+id/editEdad"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="25dp"
+                android:ems="10"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editApellidoM" />
 
             <TextView
                 android:id="@+id/txtEmail"
@@ -118,7 +138,8 @@
                 android:inputType="textEmailAddress"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editApellidoM" />
+                app:layout_constraintTop_toBottomOf="@+id/editEdad" />
+
 
             <TextView
                 android:id="@+id/txtContrasena"

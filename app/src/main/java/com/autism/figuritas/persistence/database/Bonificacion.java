@@ -10,15 +10,21 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "tb_bonus")
 public class Bonificacion
 {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "id_bonus")
-    int id_bonificacion;
+    public long id_bonificacion;
 
     @ColumnInfo(name = "bonus_accumulate")
-    int bonificacion_acumulada;
+    public int bonificacion_acumulada;
 
-    public Bonificacion(int bonificacion_acumulada)
+    public Bonificacion(long id_bonificacion, int bonificacion_acumulada)
     {
+        this.id_bonificacion = id_bonificacion;
         this.bonificacion_acumulada = bonificacion_acumulada;
+    }
+
+    public Bonificacion()
+    {
+
     }
 }

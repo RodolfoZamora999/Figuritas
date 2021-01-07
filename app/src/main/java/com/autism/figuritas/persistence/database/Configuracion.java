@@ -10,27 +10,33 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "tb_config_user")
 public class Configuracion
 {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "id_Config")
-    int id_config;
+    public long id_config;
 
     @ColumnInfo(name = "difficulty")
-    byte dificultad;
+    public byte dificultad;
 
     @ColumnInfo(name = "music")
-    boolean musica;
+    public boolean musica;
 
     @ColumnInfo(name = "sound")
-    boolean sonido;
+    public boolean sonido;
 
     @ColumnInfo(name = "colour")
-    String color;
+    public String color;
 
-    public Configuracion(byte dificultad, boolean musica, boolean sonido, String color)
+    public Configuracion(long id_config, byte dificultad, boolean musica, boolean sonido, String color)
     {
+        this.id_config = id_config;
         this.dificultad = dificultad;
         this.musica = musica;
         this.sonido = sonido;
         this.color = color;
+    }
+
+    public Configuracion()
+    {
+
     }
 }

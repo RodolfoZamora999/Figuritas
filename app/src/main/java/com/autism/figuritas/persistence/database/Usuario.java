@@ -11,35 +11,44 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "tb_user")
 public class Usuario
 {
+    @PrimaryKey
     @ColumnInfo(name = "id_user")
-    @PrimaryKey(autoGenerate = true)
-    int id_usuario;
+    public long id_usuario;
 
     @ColumnInfo(name = "name")
-    String nombre;
+    public String nombre;
 
     @ColumnInfo(name = "last_name_f")
-    String apellido_paterno;
+    public String apellido_paterno;
 
     @ColumnInfo(name = "last_name_m")
-    String apellido_materno;
+    public String apellido_materno;
 
     @ColumnInfo(name = "age")
-    byte edad;
+    public byte edad;
+
+    @ColumnInfo(name = "email")
+    public String email;
 
     @ColumnInfo(name = "password")
-    String contrasena;
+    public String contrasena;
 
     @ForeignKey(entity = Configuracion.class, parentColumns = "idConfig", childColumns = "idconfig")
     @ColumnInfo(name = "id_config")
-    int id_config;
+    public long id_config;
 
     @ForeignKey(entity = Historial.class, parentColumns = "id_history", childColumns = "id_history")
     @ColumnInfo(name = "id_history")
-    int id_historial;
+    public long id_historial;
 
-    public Usuario(String nombre, String apellido_paterno, String apellido_materno, byte edad, String contrasena, int id_config, int id_historial)
+    @ForeignKey(entity = Bonificacion.class, parentColumns = "id_bonus", childColumns = "id_bonus")
+    @ColumnInfo(name = "id_bonus")
+    public long id_bonificacion;
+
+    public Usuario(long id_usuario, String nombre, String apellido_paterno, String apellido_materno,
+                   byte edad, String email, String contrasena, long id_config, long id_historial, long id_bonificacion)
     {
+        this.id_usuario = id_usuario;
         this.nombre = nombre;
         this.apellido_paterno = apellido_paterno;
         this.apellido_materno = apellido_materno;
@@ -47,5 +56,12 @@ public class Usuario
         this.contrasena = contrasena;
         this.id_config = id_config;
         this.id_historial = id_historial;
+        this.email = email;
+        this.id_bonificacion = id_bonificacion;
+    }
+
+    public Usuario()
+    {
+
     }
 }

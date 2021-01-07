@@ -10,19 +10,25 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "tb_history")
 public class Historial
 {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "id_history")
-    int id_historial;
+    public long id_historial;
 
     @ColumnInfo(name = "percentage")
-    int porcentaje;
+    public int porcentaje;
 
     @ColumnInfo(name = "description")
-    String descripcion;
+    public String descripcion;
 
-    public Historial(int porcentaje, String descripcion)
+    public Historial(long id_historial, int porcentaje, String descripcion)
     {
+        this.id_historial = id_historial;
         this.porcentaje = porcentaje;
         this.descripcion = descripcion;
+    }
+
+    public Historial()
+    {
+
     }
 }

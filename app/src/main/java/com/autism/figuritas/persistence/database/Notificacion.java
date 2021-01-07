@@ -13,19 +13,24 @@ public class Notificacion
 {
     @PrimaryKey
     @ColumnInfo(name = "id_notification")
-    int id_notificacion;
+    public long id_notificacion;
 
     @ColumnInfo(name = "notification")
-    String notificacion;
+    public String notificacion;
 
     @ForeignKey(entity = Nivel.class, parentColumns = "id_nivel", childColumns = "id_level")
     @ColumnInfo(name = "id_level")
-    int id_nivel;
+    public long id_nivel;
 
-    public Notificacion(int id_notificacion, String notificacion, int id_nivel)
+    public Notificacion(long id_notificacion, String notificacion, long id_nivel)
     {
         this.id_notificacion = id_notificacion;
         this.notificacion = notificacion;
         this.id_nivel = id_nivel;
+    }
+
+    public Notificacion()
+    {
+
     }
 }

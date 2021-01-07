@@ -13,31 +13,31 @@ public class NivelCompletado
 {
     @PrimaryKey
     @ColumnInfo(name = "id_levelcomplete")
-    int id_nivel_completado;
+    public long id_nivel_completado;
 
     @ColumnInfo(name = "status")
-    String estatus;
+    public String estatus;
 
     @ColumnInfo(name = "score")
-    String puntuacion;
+    public String puntuacion;
 
     @ColumnInfo(name = "observation")
-    String observacion;
+    public String observacion;
 
     @ForeignKey(entity = Nivel.class, parentColumns = "id_level", childColumns = "id_level")
     @ColumnInfo(name = "id_level")
-    int id_nivel;
+    public long id_nivel;
 
     @ForeignKey(entity = Historial.class, parentColumns = "id_history", childColumns = "id_history")
     @ColumnInfo(name = "id_history")
-    int id_historial;
+    public long id_historial;
 
     @ForeignKey(entity = Bonificacion.class, parentColumns = "id_bonus", childColumns = "id_bonus")
     @ColumnInfo(name = "id_bonus")
-    int id_bonificacion;
+    public long id_bonificacion;
 
-    public NivelCompletado(int id_nivel_completado, String estatus, String puntuacion, String observacion,
-                           int id_nivel, int id_historial, int id_bonificacion)
+    public NivelCompletado(long id_nivel_completado, String estatus, String puntuacion, String observacion,
+                           long id_nivel, long id_historial, long id_bonificacion)
     {
         this.id_nivel_completado = id_nivel_completado;
         this.estatus = estatus;
@@ -46,5 +46,10 @@ public class NivelCompletado
         this.id_nivel = id_nivel;
         this.id_historial = id_historial;
         this.id_bonificacion = id_bonificacion;
+    }
+
+    public NivelCompletado()
+    {
+
     }
 }

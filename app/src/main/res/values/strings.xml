@@ -18,6 +18,7 @@
     <string name="nombre">Nombre</string>
     <string name="apell_p">Apellido Paterno</string>
     <string name="apell_m">Apellido Materno</string>
+    <string name="edad">Edad</string>
     <string name="email">Email</string>
     <string name="contrasena">Contraseña</string>
 
