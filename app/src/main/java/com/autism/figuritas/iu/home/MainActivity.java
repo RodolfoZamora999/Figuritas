@@ -1,13 +1,9 @@
-package com.autism.figuritas.iu;
+package com.autism.figuritas.iu.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import com.autism.figuritas.R;
-import com.autism.figuritas.iu.session.RegisterActivity;
-import com.autism.figuritas.iu.session.SessionActivity;
-
 public class MainActivity extends AppCompatActivity
 {
 
@@ -17,31 +13,15 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
 
         hideSystemUI();
     }
-
-
-    /**
-     * Init User Session Activity for login
-     * @param view
-     */
-    public void initSesion(View view)
-    {
-        Intent intent = new Intent(this, SessionActivity.class);
-        startActivity(intent);
-    }
-
-    /**
-     * Init Register Activity to register a new user
-     * @param view
-     */
-    public void initRegisterUser(View view)
-    {
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
-    }
-
 
     /**
      * Do fullscreen activity

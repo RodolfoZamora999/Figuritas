@@ -28,8 +28,6 @@ public class RegisterActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        hideSystemUI();
-
         //References
         this.btnRegister = findViewById(R.id.btnRegistrar);
         this.btnAbort = findViewById(R.id.btnDescartar);
@@ -39,6 +37,13 @@ public class RegisterActivity extends AppCompatActivity
         this.btnAbort.setOnClickListener(view -> abortRegister(view));
     }
 
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        hideSystemUI();
+    }
 
     /**
      * This method register a new user in Database
@@ -110,7 +115,7 @@ public class RegisterActivity extends AppCompatActivity
         usuario.id_bonificacion = bonificacion.id_bonificacion;
 
         //Insert all objects in database
-        MyDatabaseApplication application = (MyDatabaseApplication)getApplication();
+        final MyDatabaseApplication application = (MyDatabaseApplication)getApplication();
 
         application.getDataBase().getQueryExecutor().execute(()->
         {
@@ -136,7 +141,7 @@ public class RegisterActivity extends AppCompatActivity
 
         Toast.makeText(this, "Registro cancelado", Toast.LENGTH_LONG).show();
 
-        onBackPressed();
+        finish();
     }
 
     /**

@@ -4,27 +4,94 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_background">
 
-    <Button
+    <ImageButton
         android:id="@+id/btnReboot"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:background="#42A5F5"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/background_button_reboot"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_reboot"
         app:layout_constraintBottom_toBottomOf="@+id/btnExit"
         app:layout_constraintStart_toEndOf="@+id/btnExit"
         app:layout_constraintTop_toTopOf="@+id/btnExit"
         app:layout_constraintVertical_bias="1.0" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnExit"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:background="#EC407A"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/background_button_cancel"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_close"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#E1E1E1"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtTimer"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@drawable/background_timer"
+        android:text="@string/time_default"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="#717171"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imgTimer"
+        app:layout_constraintStart_toEndOf="@+id/imgTimer"
+        app:layout_constraintTop_toTopOf="@+id/imgTimer" />
+
+    <ImageView
+        android:id="@+id/imgTimer"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="112dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_timer" />
+
+    <ImageView
+        android:id="@+id/imgBonus"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_monedas" />
+
+    <TextView
+        android:id="@+id/txtBonus"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:text="@string/bonus_default"
+        android:textAlignment="center"
+        android:textColor="#989798"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBonus"
+        app:layout_constraintStart_toEndOf="@+id/imgBonus"
+        app:layout_constraintTop_toTopOf="@+id/imgBonus" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

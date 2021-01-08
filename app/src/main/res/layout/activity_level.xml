@@ -2,45 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/ic_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".iu.levels.LevelActivity">
 
-    <include layout="@layout/activity_level_interface" />
-
-    <ImageView
-        android:id="@+id/imgScuare"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="104dp"
-        android:elevation="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_square" />
-
-    <ImageView
-        android:id="@+id/imgTraingle"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="50dp"
-        android:elevation="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgScuare"
-        app:layout_constraintStart_toEndOf="@+id/imgScuare"
-        app:layout_constraintTop_toTopOf="@+id/imgScuare"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_triangle" />
-
-    <ImageView
-        android:id="@+id/imgCircle"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="50dp"
-        android:elevation="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgTraingle"
-        app:layout_constraintStart_toEndOf="@+id/imgTraingle"
-        app:layout_constraintTop_toTopOf="@+id/imgTraingle"
-        app:srcCompat="@drawable/ic_circle" />
-
+    <fragment
+        android:id="@+id/fragment3"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/level_1_nav"
+        tools:layout_editor_absoluteX="217dp"
+        tools:layout_editor_absoluteY="179dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

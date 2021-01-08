@@ -5,13 +5,17 @@ import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.text.method.TransformationMethod;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.autism.figuritas.MyDatabaseApplication;
 import com.autism.figuritas.R;
 import com.autism.figuritas.iu.config.InitConfigActivity;
 
 public class SessionActivity extends AppCompatActivity
 {
+    private Button enterSession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -20,6 +24,16 @@ public class SessionActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_sesion);
 
+        //Reference button
+        this.enterSession = findViewById(R.id.btnIniciarSesion);
+        this.enterSession.setOnClickListener(view -> enterSession(view));
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
         hideSystemUI();
     }
 
@@ -27,11 +41,40 @@ public class SessionActivity extends AppCompatActivity
      * Init User session
      * @param view
      */
-    public void enterSesion(View view)
+    private void enterSession(View view)
     {
+        //Todo: Verificar los datos de entrada
+        String email = ((EditText)findViewById(R.id.editEmailSession)).getText().toString();
+        String password = ((EditText)findViewById(R.id.editPassword)).getText().toString();
+
+        //Compare email and password with database
+        final MyDatabaseApplication application = (MyDatabaseApplication) getApplication();
+        application.getDataBase().getQueryExecutor().execute(()->
+        {
+
+
+
+            //Result of comparing data
+            runOnUiThread(()->
+            {
+
+            });
+
+        });
+
+
         //Todo: Ver que onda con esto, el shared prefeferenfces para cada usuario
-        Intent intent = new Intent(this, InitConfigActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, InitConfigActivity.class);
+        //startActivity(intent);
+
+
+        //Result for activity home
+
+        Intent intent = new Intent();
+
+        setResult(RESULT_OK, intent);
+
+        finish();
 
          /*
         //Check config if is complete

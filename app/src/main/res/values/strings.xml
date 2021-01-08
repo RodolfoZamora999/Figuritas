@@ -1,10 +1,14 @@
 <resources>
     <!--Generic string-->
     <string name="app_name">Figuritas</string>
+    <string name="name">FIGURITAS</string>
+
 
     <!--Main Activity-->
-    <string name="btnIniciar">Iniciar Sesión</string>
+    <string name="btnIniciar">Iniciar sesión</string>
     <string name="btnRegistro">Registrate</string>
+    <string name="btnIniciar_niveles">Iniciar</string>
+    <string name="btnConfiguracion">Configuración</string>
 
     <!--Session Activity-->
     <string name="inicio_sesion">Inicio de sesión</string>
@@ -21,6 +25,11 @@
     <string name="edad">Edad</string>
     <string name="email">Email</string>
     <string name="contrasena">Contraseña</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--Level Activity-->
+    <string name="bonus_default">x0</string>
+    <string name="time_default">3:00</string>
 
 </resources>

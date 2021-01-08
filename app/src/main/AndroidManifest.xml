@@ -23,7 +23,7 @@
             android:name=".iu.config.InitConfigActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".iu.MainActivity"
+            android:name=".iu.home.MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

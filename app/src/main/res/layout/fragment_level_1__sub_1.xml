@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".iu.levels.level_1.Level_1_Sub_1">
+
+    <include
+        layout="@layout/activity_level_interface"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgCircle_1_1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.357"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.378" />
+
+    <ImageView
+        android:id="@+id/imgSquare_1_1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="64dp"
+        android:src="@drawable/ic_square"
+        app:layout_constraintBottom_toBottomOf="@+id/imgCircle_1_1"
+        app:layout_constraintStart_toEndOf="@+id/imgCircle_1_1"
+        app:layout_constraintTop_toTopOf="@+id/imgCircle_1_1" />
+
+
+    <ImageView
+        android:id="@+id/imgCircleSlock_1_1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="268dp"
+        android:background="#838383"
+        app:layout_constraintBottom_toBottomOf="@+id/imgSquareSlock_1_1"
+        app:layout_constraintStart_toEndOf="@+id/imgSquareSlock_1_1"
+        app:layout_constraintTop_toTopOf="@+id/imgSquareSlock_1_1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imgSquareSlock_1_1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="#838383"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.942" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

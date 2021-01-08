@@ -16,6 +16,12 @@ public class InitConfigActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_init_config);
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
 
         hideSystemUI();
     }

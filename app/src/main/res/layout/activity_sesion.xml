@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editUserName"
+        android:id="@+id/editEmailSession"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
@@ -37,10 +37,10 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/editUserName"
+        app:layout_constraintEnd_toEndOf="@+id/editEmailSession"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editUserName"
-        app:layout_constraintTop_toBottomOf="@+id/editUserName" />
+        app:layout_constraintStart_toStartOf="@+id/editEmailSession"
+        app:layout_constraintTop_toBottomOf="@+id/editEmailSession" />
 
     <TextView
         android:id="@+id/txtOlvidaste"
@@ -74,7 +74,6 @@
         android:layout_marginTop="20dp"
         android:text="@string/Iniciar"
         android:textAllCaps="false"
-        android:onClick="enterSesion"
         app:layout_constraintEnd_toEndOf="@+id/editPassword"
         app:layout_constraintStart_toStartOf="@+id/editPassword"
         app:layout_constraintTop_toBottomOf="@+id/editPassword" />

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav"
+    app:startDestination="@id/homeWithoutSessionFragment">
+
+    <fragment
+        android:id="@+id/homeWithoutSessionFragment"
+        android:name="com.autism.figuritas.iu.home.HomeWithoutSessionFragment"
+        android:label="fragment_home_without_sesion"
+        tools:layout="@layout/fragment_home_without_sesion" >
+        <action
+            android:id="@+id/action_homeWithoutSessionFragment_to_homeSessionFragment"
+            app:destination="@id/homeSessionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeSessionFragment"
+        android:name="com.autism.figuritas.iu.home.HomeSessionFragment"
+        android:label="fragment_home_sesion"
+        tools:layout="@layout/fragment_home_sesion" />
+</navigation>
