@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.autism.figuritas">
+    <!-- Pantalla siempre activa -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".MyDatabaseApplication"
@@ -11,11 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Figuritas">
         <activity
-            android:name=".iu.session.RegisterActivity"
+            android:name=".iu.config.ConfigActivity"
             android:screenOrientation="landscape"/>
         <activity
+            android:name=".iu.session.RegisterActivity"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".iu.session.SessionActivity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".iu.levels.LevelActivity"
             android:screenOrientation="landscape" />
@@ -27,6 +32,7 @@
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

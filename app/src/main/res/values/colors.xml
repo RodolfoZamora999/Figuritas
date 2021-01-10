@@ -7,4 +7,46 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--My Colors-->
+    <color name="AMBER">#FFC107</color>
+    <color name="AMBER_BACKGROUND">#FFF7E0</color>
+    <color name="AMBER_COMPLEMENTATION">#0745FF</color>
+    <color name="AMBER_ANALOGO">#07C1FF</color>
+
+    <color name="CYAN">#00BCD4</color>
+    <color name="CYAN_BACKGROUND">#DFF7FA</color>
+    <color name="CYAN_COMPLEMENTATION">#D41800</color>
+    <color name="CYAN_ANALOGO">#D40052</color>
+
+    <color name="PINK">#FF4081</color>
+    <color name="PINK_BACKGROUND">#FFE7EF</color>
+    <color name="PINK_COMPLEMENTATION">#40FFBE</color>
+    <color name="PINK_ANALOGO">#FF5E40</color>
+
+    <color name="ORANGE">#FF8000</color>
+    <color name="ORANGE_BACKGROUND">#FFEFDF</color>
+    <color name="ORANGE_COMPLEMENTATION">#007FFF</color>
+    <color name="ORANGE_ANALOGO">#47CC47</color>
+
+    <color name="RED">#F44336</color>
+    <color name="RED_BACKGROUND">#FEE8E6</color>
+    <color name="RED_COMPLEMENTATION">#36E7F4</color>
+    <color name="RED_ANALOGO">#30BA3A</color>
+
+    <color name="GREEN">#ACAF50</color>
+    <color name="GREEN_BACKGROUND">#F5F5E9</color>
+    <color name="GREEN_COMPLEMENTATION">#5350AF</color>
+    <color name="GREEN_ANALOGO">#507DAF</color>
+
+    <color name="LIGHT_BLUE">#03A9F4</color>
+    <color name="LIGHT_BLUE_BACKGROUND">#E0F4FE</color>
+    <color name="LIGHT_BLUE_COMPLEMENTATION">#F44E03</color>
+    <color name="LIGHT_BLUE_ANALOGO">#F40331</color>
+
+    <color name="WHITE">#FFFFFF</color>
+    <color name="WHITE_BACKGROUND">#FFFFFF</color>
+    <color name="WHITE_COMPLEMENTATION">#373737</color>
+    <color name="WHITE_ANALOGO">#6E6E6E</color>
+
 </resources>

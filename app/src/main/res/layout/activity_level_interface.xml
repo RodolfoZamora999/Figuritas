@@ -9,7 +9,7 @@
 
     <ImageButton
         android:id="@+id/btnReboot"
-        android:layout_width="70dp"
+        android:layout_width="50dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
@@ -23,9 +23,9 @@
 
     <ImageButton
         android:id="@+id/btnExit"
-        android:layout_width="70dp"
+        android:layout_width="50dp"
         android:layout_height="40dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/background_button_cancel"
         android:scaleType="fitCenter"
@@ -45,15 +45,15 @@
 
     <TextView
         android:id="@+id/txtTimer"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
         android:background="@drawable/background_timer"
-        android:text="@string/time_default"
         android:fontFamily="monospace"
         android:gravity="center"
+        android:text="@string/time_default"
         android:textAlignment="center"
         android:textColor="#717171"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imgTimer"
         app:layout_constraintStart_toEndOf="@+id/imgTimer"
@@ -61,10 +61,10 @@
 
     <ImageView
         android:id="@+id/imgTimer"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="112dp"
+        android:layout_marginEnd="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_timer" />
@@ -73,8 +73,9 @@
         android:id="@+id/imgBonus"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="72dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.866"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_monedas" />
@@ -88,10 +89,27 @@
         android:text="@string/bonus_default"
         android:textAlignment="center"
         android:textColor="#989798"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imgBonus"
         app:layout_constraintStart_toEndOf="@+id/imgBonus"
-        app:layout_constraintTop_toTopOf="@+id/imgBonus" />
+        app:layout_constraintTop_toTopOf="@+id/imgBonus"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txtReglaNivel"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:text="Seleccionar cuadrado amarillo"
+        android:textColor="@color/WHITE"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:background="@color/AMBER"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

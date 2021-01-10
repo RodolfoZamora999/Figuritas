@@ -12,8 +12,7 @@
         tools:layout="@layout/fragment_colors" >
         <action
             android:id="@+id/action_colorsFragment_to_soundFragment"
-            app:destination="@id/soundFragment"
-            app:exitAnim="@android:anim/slide_out_right" />
+            app:destination="@id/soundFragment" />
     </fragment>
     <fragment
         android:id="@+id/soundFragment"
@@ -22,8 +21,7 @@
         tools:layout="@layout/fragment_sound" >
         <action
             android:id="@+id/action_soundFragment_to_levelFragment"
-            app:destination="@id/levelFragment"
-            app:exitAnim="@android:anim/slide_out_right" />
+            app:destination="@id/levelFragment" />
     </fragment>
     <fragment
         android:id="@+id/levelFragment"

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_backgroud_main"
+    tools:context=".iu.config.ConfigActivity">
+
+    <Button
+        android:id="@+id/btnGuardarConfig"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/AMBER_ANALOGO"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Configuración"
+        android:textColor="#C66BA7"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnRegresarConfig"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/RED"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtSonido"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/sonido"
+        android:textColor="@color/AMBER"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.336"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/txtMusica"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/musicoterapia"
+        android:textColor="@color/AMBER"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txtSonido"
+        app:layout_constraintStart_toStartOf="@+id/txtSonido"
+        app:layout_constraintTop_toBottomOf="@+id/txtSonido" />
+
+    <TextView
+        android:id="@+id/txtColor"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="24dp"
+        android:text="Color"
+        android:textColor="@color/AMBER"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txtMusica"
+        app:layout_constraintStart_toStartOf="@+id/txtMusica"
+        app:layout_constraintTop_toBottomOf="@+id/txtMusica" />
+
+    <TextView
+        android:id="@+id/txtNivel"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="24dp"
+        android:text="Nivel"
+        android:textColor="@color/AMBER"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txtColor"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtColor"
+        app:layout_constraintTop_toBottomOf="@+id/txtColor" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

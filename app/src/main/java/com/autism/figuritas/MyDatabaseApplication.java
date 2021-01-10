@@ -28,7 +28,7 @@ public class MyDatabaseApplication extends Application
         {
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
-            editor.putInt("current_user", 0);
+            editor.putLong("current_user", 0);
             editor.putBoolean("config_complete", false);
             editor.commit();
         }

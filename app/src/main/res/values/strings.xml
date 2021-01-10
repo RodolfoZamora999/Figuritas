@@ -32,4 +32,16 @@
     <string name="bonus_default">x0</string>
     <string name="time_default">3:00</string>
 
+    <!--Init Config-->
+    <string name="seleccionar_color">Selecciona un color</string>
+    <string name="seleccionar_sonido">Configuración de audio</string>
+    <string name="seleccionar_nivel">Nivel de dificultad</string>
+    <string name="btn_siguiente">Siguiente</string>
+    <string name="btn_guardar">Guardar</string>
+    <string name="btn_facil">Fácil</string>
+    <string name="btn_normal">Normal</string>
+    <string name="btn_dificil">Difícil</string>
+    <string name="sonido">Sonido</string>
+    <string name="musicoterapia">Musicoterapia</string>
+
 </resources>

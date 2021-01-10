@@ -1,17 +1,16 @@
 package com.autism.figuritas.iu.session;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.method.PasswordTransformationMethod;
 import android.text.method.TransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.autism.figuritas.MyDatabaseApplication;
 import com.autism.figuritas.R;
-import com.autism.figuritas.iu.config.InitConfigActivity;
 
 public class SessionActivity extends AppCompatActivity
 {
@@ -51,9 +50,6 @@ public class SessionActivity extends AppCompatActivity
         final MyDatabaseApplication application = (MyDatabaseApplication) getApplication();
         application.getDataBase().getQueryExecutor().execute(()->
         {
-
-
-
             //Result of comparing data
             runOnUiThread(()->
             {
@@ -62,34 +58,13 @@ public class SessionActivity extends AppCompatActivity
 
         });
 
+        //Put current user
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        preferences.edit().putLong("current_user", 100231).commit();
 
-        //Todo: Ver que onda con esto, el shared prefeferenfces para cada usuario
-        //Intent intent = new Intent(this, InitConfigActivity.class);
-        //startActivity(intent);
-
-
-        //Result for activity home
-
-        Intent intent = new Intent();
-
-        setResult(RESULT_OK, intent);
-
+        //Send result and close activity
+        setResult(RESULT_OK);
         finish();
-
-         /*
-        //Check config if is complete
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean config_complete = sharedPreferences.getBoolean("config_complete",false);
-
-        Intent intent = new Intent();
-
-        if(config_complete)
-            intent.setClass(this, LevelActivity.class);
-        else
-            intent.setClass(this, InitConfigActivity.class);
-
-        startActivity(intent);*/
-
     }
 
     /**

@@ -10,7 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import com.autism.figuritas.R;
+import com.autism.figuritas.iu.config.ConfigActivity;
 import com.autism.figuritas.iu.config.InitConfigActivity;
+import com.autism.figuritas.iu.levels.LevelActivity;
+import com.autism.figuritas.persistence.database.Configuracion;
 
 import java.time.LocalDate;
 
@@ -51,19 +54,16 @@ public class HomeSessionFragment extends Fragment
     private void initLevel(View view)
     {
         Intent intent = new Intent();
-        intent.setClass(getContext(), InitConfigActivity.class);
+        intent.setClass(getContext(), LevelActivity.class);
 
         startActivity(intent);
     }
 
     private void initConfig(View view)
     {
+        Intent intent = new Intent();
+        intent.setClass(getContext(), ConfigActivity.class);
 
-        int list = getActivity().getSupportFragmentManager().getBackStackEntryCount();
-
-        Log.d("PRINT", "Size: " + list);
-
-
-
+        startActivity(intent);
     }
 }

@@ -4,19 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragmentSound"
-    android:background="#FF5722"
-
+    android:id="@+id/viewGroupSound"
     tools:context=".iu.config.SoundFragment">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fragmento de sonido"
+        android:id="@+id/txtTitleSound"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="#5C6BC0"
+        android:text="@string/seleccionar_sonido"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@color/AMBER"/>
+
+    <Switch
+        android:id="@+id/switchMusica"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="69dp"
+        android:checked="true"
+        android:text="@string/musicoterapia"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitleSound" />
+
+    <Switch
+        android:id="@+id/switchSonido"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:checked="true"
+        android:text="@string/sonido"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/switchMusica"
+        app:layout_constraintStart_toStartOf="@+id/switchMusica"
+        app:layout_constraintTop_toBottomOf="@+id/switchMusica" />
+
+
+    <Button
+        android:id="@+id/btnNextSounds"
+        android:layout_width="120dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/btn_siguiente"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        android:textColor="@color/WHITE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.969"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:background="@color/AMBER_ANALOGO"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
