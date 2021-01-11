@@ -1,13 +1,12 @@
 package com.autism.figuritas.iu.levels.level_1;
 
-import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+import androidx.dynamicanimation.animation.DynamicAnimation;
+import androidx.dynamicanimation.animation.SpringAnimation;
+import androidx.dynamicanimation.animation.SpringForce;
 import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,16 +14,15 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.autism.figuritas.R;
-import com.autism.figuritas.iu.home.MainActivity;
+import com.autism.figuritas.iu.components.TimerView;
 import com.autism.figuritas.iu.levels.LevelActivity;
 
-import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
-
-public class Level_1_Sub_1 extends Fragment
+public class Level_1_Sub_1 extends Fragment implements TimerView.TimerViewFinishListener
 {
+    private TimerView timerView;
+
     private MediaPlayer mediaPlayer;
 
     private ImageView imgCircle;
@@ -51,15 +49,13 @@ public class Level_1_Sub_1 extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-
-
         return inflater.inflate(R.layout.fragment_level_1__sub_1, container, false);
     }
 
     @Override
-    public void onStart()
+    public void onActivityCreated(@Nullable Bundle savedInstanceState)
     {
-        super.onStart();
+        super.onActivityCreated(savedInstanceState);
 
         //References components
         this.imgCircle = getActivity().findViewById(R.id.imgCircle_1_1);
@@ -69,6 +65,11 @@ public class Level_1_Sub_1 extends Fragment
         this.btnCerrar = getActivity().findViewById(R.id.btnExit);
         this.txtTimer = getActivity().findViewById(R.id.txtTimer);
 
+        //Create instance of TimerView
+        this.timerView = new TimerView();
+        this.timerView.setTime(0, 15);
+        this.timerView.setTimerViewStopListener(this);
+        this.timerView.setTextView(txtTimer);
 
         //Tag for images
         this.imgCircle.setTag("circle");
@@ -103,6 +104,23 @@ public class Level_1_Sub_1 extends Fragment
 
         this.imgSquareSlock.setOnDragListener(new LevelActivity.DragImplementation());
         this.imgCircleSlock.setOnDragListener(new LevelActivity.DragImplementation());
+
+        Log.d("PRINT", "onActivityCreated");
+    }
+
+    @Override
+    public void finishTimerView(TextView txtTimer, int mintes, int secods)
+    {
+        getActivity().runOnUiThread(()->
+        {
+            Toast.makeText(getContext(), "¡Tiempo terminado!", Toast.LENGTH_LONG).show();
+
+            SpringAnimation rotation = new SpringAnimation(txtTimer, DynamicAnimation.ROTATION, 360);
+            rotation.getSpring().setStiffness(SpringForce.STIFFNESS_VERY_LOW);
+
+            rotation.start();
+            //springAnimationY.start();
+        });
     }
 
     @Override
@@ -116,6 +134,23 @@ public class Level_1_Sub_1 extends Fragment
             mediaPlayer.start();
         }
 
+        //Start TimerView time
+        if(timerView != null)
+        {
+            if(timerView.isPause())
+                timerView.resumeTimerView();
+            else
+                timerView.startTimerView();
+        }
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+
+       /* if(timerView != null && timerView.isRunning())
+            timerView.pauseTimerView();*/
     }
 
     @Override
@@ -131,12 +166,22 @@ public class Level_1_Sub_1 extends Fragment
         }
     }
 
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+
+        if(this.timerView != null)
+            this.timerView.stopTimerView();
+    }
+
     /**
      * Method for play image sound
      * @param view
      */
     public void playSound(View view)
     {
+        //Todo: Mejorar esta sección de código
         int id_resource = 0;
 
         if(view.getTag().toString().equals("circle"))
@@ -147,47 +192,6 @@ public class Level_1_Sub_1 extends Fragment
 
 
         MediaPlayer.create(getContext(), id_resource).start();
-
-        /*
-       try
-       {
-           AssetFileDescriptor afd = getActivity().getResources().openRawResourceFd(R.raw.circulo);
-
-           if (afd == null)
-               return;
-
-           mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-
-           afd.close();
-
-           mediaPlayer.prepareAsync();
-       }
-       catch (IOException ioException)
-       {
-           Log.d("PRINT", "Error AssetFileDescriptor close");
-       }*/
     }
-
-
-    /*
-    public void metodo()
-    {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask()
-        {
-            int value = 0;
-
-            @Override
-            public void run()
-            {
-                Log.d("PRINT", "second: " + value);
-                value++;
-
-                /*if(value == 60)
-                    timer.cancel();
-            }
-        }, 1000 / 60, 60);
-    }*/
-
 }
 
