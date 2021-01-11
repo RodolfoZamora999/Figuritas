@@ -30,6 +30,8 @@ public class MyDatabaseApplication extends Application
 
             editor.putLong("current_user", 0);
             editor.putBoolean("config_complete", false);
+            editor.putInt("music_volume", 50);
+            editor.putInt("sound_volume", 70);
             editor.commit();
         }
     }

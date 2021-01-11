@@ -18,7 +18,7 @@ public interface DAO
     public long insertUser(Usuario usuario);
 
     @Query("SELECT * FROM tb_user WHERE tb_user.id_user = :id_user")
-    public Usuario getUser(int id_user);
+    public Usuario getUser(long id_user);
 
     @Update(onConflict = OnConflictStrategy.ABORT)
     public void updateUser(Usuario usuario);
@@ -32,7 +32,7 @@ public interface DAO
     public long insertConfig(Configuracion config);
 
     @Query("SELECT * FROM tb_config_user WHERE tb_config_user.id_Config = :id_config")
-    public Configuracion getConfig(int id_config);
+    public Configuracion getConfig(long id_config);
 
     @Update(onConflict = OnConflictStrategy.ABORT)
     public void updateConfig(Configuracion config);
@@ -46,7 +46,7 @@ public interface DAO
     public long inserHistory(Historial historial);
 
     @Query("SELECT * FROM tb_history WHERE tb_history.id_history = :id_history")
-    public Historial getHistory(int id_history);
+    public Historial getHistory(long id_history);
 
     @Update(onConflict = OnConflictStrategy.ABORT)
     public void updateHistory(Historial historial);
@@ -60,7 +60,7 @@ public interface DAO
     public long insertLevel(Nivel nivel);
 
     @Query("SELECT * FROM tb_level WHERE tb_level.id_level = :id_level")
-    public Nivel getLevel(int id_level);
+    public Nivel getLevel(long id_level);
 
     @Update(onConflict = OnConflictStrategy.ABORT)
     public void updateLevel(Nivel nivel);
@@ -74,7 +74,7 @@ public interface DAO
     public long insertNotification(Notificacion notificacion);
 
     @Query("SELECT * FROM tb_notification WHERE tb_notification.id_notification = :id_notification")
-    public Notificacion getNotification(int id_notification);
+    public Notificacion getNotification(long id_notification);
 
     @Update(onConflict = OnConflictStrategy.ABORT)
     public void updateNotification(Notificacion notificacion);
@@ -88,7 +88,7 @@ public interface DAO
     public long insertLevelComplete(NivelCompletado nivelCompletado);
 
     @Query("SELECT * FROM tb_level_complete WHERE tb_level_complete.id_levelcomplete = :id_level_complete")
-    public NivelCompletado getLevelComplete(int id_level_complete);
+    public NivelCompletado getLevelComplete(long id_level_complete);
 
     @Update(onConflict = OnConflictStrategy.ABORT)
     public void updateLevelComplete(NivelCompletado nivelCompletado);
@@ -102,7 +102,7 @@ public interface DAO
     public long insertBonus(Bonificacion bonificacion);
 
     @Query("SELECT * FROM tb_bonus WHERE tb_bonus.id_bonus = :id_bonus")
-    public Bonificacion getBonus(int id_bonus);
+    public Bonificacion getBonus(long id_bonus);
 
     @Update(onConflict = OnConflictStrategy.ABORT)
     public void updateBonus(Bonificacion bonificacion);
