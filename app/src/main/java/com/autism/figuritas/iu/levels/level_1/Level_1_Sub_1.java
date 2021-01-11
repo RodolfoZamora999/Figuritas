@@ -2,6 +2,8 @@ package com.autism.figuritas.iu.levels.level_1;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+
+import androidx.annotation.LongDef;
 import androidx.annotation.Nullable;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
@@ -29,6 +31,7 @@ public class Level_1_Sub_1 extends Fragment implements TimerView.TimerViewFinish
     private ImageView imgSquare;
     private ImageView imgCircleSlock;
     private ImageView imgSquareSlock;
+    private ImageView imgTimer;
 
     private ImageButton btnCerrar;
 
@@ -64,10 +67,11 @@ public class Level_1_Sub_1 extends Fragment implements TimerView.TimerViewFinish
         this.imgSquareSlock = getActivity().findViewById(R.id.imgSquareSlock_1_1);
         this.btnCerrar = getActivity().findViewById(R.id.btnExit);
         this.txtTimer = getActivity().findViewById(R.id.txtTimer);
+        this.imgTimer = getActivity().findViewById(R.id.imgTimer);
 
         //Create instance of TimerView
         this.timerView = new TimerView();
-        this.timerView.setTime(0, 15);
+        this.timerView.setTime(0, 30);
         this.timerView.setTimerViewStopListener(this);
         this.timerView.setTextView(txtTimer);
 
@@ -104,8 +108,6 @@ public class Level_1_Sub_1 extends Fragment implements TimerView.TimerViewFinish
 
         this.imgSquareSlock.setOnDragListener(new LevelActivity.DragImplementation());
         this.imgCircleSlock.setOnDragListener(new LevelActivity.DragImplementation());
-
-        Log.d("PRINT", "onActivityCreated");
     }
 
     @Override
@@ -115,11 +117,10 @@ public class Level_1_Sub_1 extends Fragment implements TimerView.TimerViewFinish
         {
             Toast.makeText(getContext(), "¡Tiempo terminado!", Toast.LENGTH_LONG).show();
 
-            SpringAnimation rotation = new SpringAnimation(txtTimer, DynamicAnimation.ROTATION, 360);
+            SpringAnimation rotation = new SpringAnimation(imgTimer, DynamicAnimation.ROTATION, 360);
             rotation.getSpring().setStiffness(SpringForce.STIFFNESS_VERY_LOW);
 
             rotation.start();
-            //springAnimationY.start();
         });
     }
 
@@ -128,20 +129,20 @@ public class Level_1_Sub_1 extends Fragment implements TimerView.TimerViewFinish
     {
         super.onResume();
 
-        if(mediaPlayer == null)
+        if (mediaPlayer == null)
         {
-            mediaPlayer = ((LevelActivity)getActivity()).getMediaPlayerSingleton();
+            mediaPlayer = ((LevelActivity) getActivity()).getMediaPlayerSingleton();
             mediaPlayer.start();
         }
 
-        //Start TimerView time
-        if(timerView != null)
+        if (timerView != null)
         {
             if(timerView.isPause())
                 timerView.resumeTimerView();
             else
                 timerView.startTimerView();
         }
+
     }
 
     @Override
@@ -149,8 +150,8 @@ public class Level_1_Sub_1 extends Fragment implements TimerView.TimerViewFinish
     {
         super.onPause();
 
-       /* if(timerView != null && timerView.isRunning())
-            timerView.pauseTimerView();*/
+        if(timerView != null)
+            timerView.pauseTimerView();
     }
 
     @Override
@@ -163,6 +164,8 @@ public class Level_1_Sub_1 extends Fragment implements TimerView.TimerViewFinish
         {
             if(mediaPlayer.isPlaying())
                 mediaPlayer.stop();
+
+            mediaPlayer = null;
         }
     }
 

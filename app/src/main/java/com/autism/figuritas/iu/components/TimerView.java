@@ -1,17 +1,14 @@
 package com.autism.figuritas.iu.components;
 
 import android.os.Handler;
-import android.util.Log;
 import android.widget.TextView;
 import java.util.Timer;
 import java.util.TimerTask;
 
 /**
  * Class to convert a TextView to a TimerView
- * Todo: Todavía queda muchas mejor por hacer en esta clase, pero actualmente se encuentra funcional.
- * Todo: Recuerda corregir bugs, hacer más pruebas y mejorar la pausa
  */
-public class TimerView extends TimerTask
+public class TimerView //extends TimerTask
 {
     private Timer timer;
 
@@ -26,6 +23,8 @@ public class TimerView extends TimerTask
     private boolean isPause;
 
     private Handler handlerMain;
+
+    private MyTimerTask timerTask;
 
     /**
      * Empty constructor
@@ -52,42 +51,8 @@ public class TimerView extends TimerTask
     }
 
     /**
-     * Implementation TimerTask interface
+     * Method to start TimerView counter
      */
-    @Override
-    public void run()
-    {
-        Log.d("PRINT", "Entro timer");
-
-
-        //Check if time is finish
-        if(minutes == 0 && seconds == 0)
-        {
-            if(timerViewFinishListener != null)
-                timerViewFinishListener.finishTimerView(textView, minutes, seconds);
-
-            //Stop timer
-            stopTimerView();
-
-            return;
-        }
-
-        if(seconds >= 0)
-            seconds--;
-        else
-        {
-            minutes--;
-            seconds = 59;
-        }
-
-        //Format; 01:30
-        String formatTime = minutes + ":" + seconds ;
-
-        //Update TextView
-        if(textView != null)
-            updateTextView(formatTime);
-    }
-
     public void startTimerView()
     {
         this.timer = new Timer();
@@ -95,7 +60,9 @@ public class TimerView extends TimerTask
         if(textView != null)
             this.handlerMain = new Handler(textView.getContext().getMainLooper());
 
-        this.timer.scheduleAtFixedRate(this, 0, 1000);
+        this.timerTask = new MyTimerTask();
+
+        this.timer.scheduleAtFixedRate(timerTask, 0, 1000);
 
         this.isRunning = true;
     }
@@ -110,6 +77,8 @@ public class TimerView extends TimerTask
             timer.cancel();
             timer.purge();
             timer = null;
+            timerTask.cancel();
+            timerTask = null;
             isRunning = false;
             isPause = true;
         }
@@ -117,7 +86,11 @@ public class TimerView extends TimerTask
 
     public void resumeTimerView()
     {
-       // this.timer.scheduleAtFixedRate(this, 1000, 1000);
+        //Resume timer
+        this.timer = new Timer();
+        this.timerTask = new MyTimerTask();
+        this.timer.scheduleAtFixedRate(timerTask, 0, 1000);
+
         isPause = false;
     }
 
@@ -130,7 +103,10 @@ public class TimerView extends TimerTask
         {
             timer.cancel();
             timer.purge();
+            timerTask.cancel();
+            timerViewFinishListener = null;
             timer = null;
+            timerTask = null;
             isRunning = false;
         }
 
@@ -199,6 +175,53 @@ public class TimerView extends TimerTask
     public TextView getTextView()
     {
         return this.textView;
+    }
+
+    /**
+     * Implementation of TimerTask
+     */
+    private class MyTimerTask extends TimerTask
+    {
+        @Override
+        public void run()
+        {
+            //Check if time is finish
+            if(minutes == 0 && seconds == 0)
+            {
+                if(timerViewFinishListener != null)
+                    timerViewFinishListener.finishTimerView(textView, minutes, seconds);
+
+                //Stop timer
+                stopTimerView();
+
+                return;
+            }
+
+            if(seconds >= 0)
+                seconds--;
+            else
+            {
+                minutes--;
+                seconds = 59;
+            }
+
+            //Format; 01:30
+            String formatTime;
+
+            if(minutes < 10)
+                formatTime = "0"+minutes+":";
+            else
+                formatTime = minutes+":";
+
+            if(seconds < 10)
+                formatTime += "0"+seconds;
+            else
+                formatTime += ""+seconds;
+
+            //Update TextView
+            if(textView != null)
+                updateTextView(formatTime);
+        }
     }
 
     /**
