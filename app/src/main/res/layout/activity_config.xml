@@ -7,40 +7,38 @@
     android:background="@drawable/ic_backgroud_main"
     tools:context=".iu.config.ConfigActivity">
 
-    <Button
-        android:id="@+id/btnGuardarConfig"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/AMBER_ANALOGO"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarConfig"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/AMBER"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Configuración"
-        android:textColor="#C66BA7"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
+        android:id="@+id/btnGuardarConfig"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/AMBER"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
         android:id="@+id/btnRegresarConfig"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/RED"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/AMBER"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,7 +46,7 @@
         android:id="@+id/txtSonido"
         android:layout_width="150dp"
         android:layout_height="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="80dp"
         android:text="@string/sonido"
         android:textColor="@color/AMBER"
         android:textSize="20sp"
@@ -56,13 +54,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.336"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtMusica"
         android:layout_width="150dp"
         android:layout_height="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="35dp"
         android:text="@string/musicoterapia"
         android:textColor="@color/AMBER"
         android:textSize="20sp"
@@ -75,7 +73,7 @@
         android:id="@+id/txtColor"
         android:layout_width="150dp"
         android:layout_height="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="35dp"
         android:text="Color"
         android:textColor="@color/AMBER"
         android:textSize="20sp"
@@ -88,7 +86,7 @@
         android:id="@+id/txtNivel"
         android:layout_width="150dp"
         android:layout_height="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="35dp"
         android:text="Nivel"
         android:textColor="@color/AMBER"
         android:textSize="20sp"
@@ -97,5 +95,113 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/txtColor"
         app:layout_constraintTop_toBottomOf="@+id/txtColor" />
+
+    <SeekBar
+        android:id="@+id/seekBarMusicaConfig"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:max="100"
+        android:maxHeight="7dp"
+        android:minHeight="7dp"
+        android:progress="50"
+        android:progressDrawable="@drawable/seekbar_personalizado"
+        android:soundEffectsEnabled="true"
+        android:thumb="@drawable/seekbar_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/txtMusica"
+        app:layout_constraintStart_toEndOf="@+id/txtMusica"
+        app:layout_constraintTop_toTopOf="@+id/txtMusica"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <SeekBar
+        android:id="@+id/seekBarSoundConfig"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:max="100"
+        android:maxHeight="7dp"
+        android:minHeight="7dp"
+        android:progress="70"
+        android:thumb="@drawable/seekbar_icon"
+        android:progressDrawable="@drawable/seekbar_personalizado"
+        android:soundEffectsEnabled="true"
+        app:layout_constraintBottom_toBottomOf="@+id/txtSonido"
+        app:layout_constraintStart_toEndOf="@+id/txtSonido"
+        app:layout_constraintTop_toTopOf="@+id/txtSonido" />
+
+    <ImageView
+        android:id="@+id/imgColorConfig"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtColor"
+        app:layout_constraintStart_toEndOf="@+id/txtColor"
+        app:layout_constraintTop_toTopOf="@+id/txtColor"
+        tools:srcCompat="@color/AMBER" />
+
+    <Button
+        android:id="@+id/btnLevelConfig1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@color/LIGHT_BLUE"
+        android:text="1"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:elevation="0dp"
+        android:outlineProvider="none"
+        app:layout_constraintBottom_toBottomOf="@+id/txtNivel"
+        app:layout_constraintStart_toEndOf="@+id/txtNivel"
+        app:layout_constraintTop_toTopOf="@+id/txtNivel" />
+
+    <Button
+        android:id="@+id/btnLevelConfig2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="5dp"
+        android:background="@color/AMBER"
+        android:text="2"
+        android:elevation="0dp"
+        android:outlineProvider="none"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnLevelConfig1"
+        app:layout_constraintStart_toEndOf="@+id/btnLevelConfig1"
+        app:layout_constraintTop_toTopOf="@+id/btnLevelConfig1" />
+
+    <Button
+        android:id="@+id/btnLevelConfig3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="5dp"
+        android:background="@color/CYAN_COMPLEMENTATION"
+        android:text="3"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:elevation="0dp"
+        android:outlineProvider="none"
+        app:layout_constraintBottom_toBottomOf="@+id/btnLevelConfig2"
+        app:layout_constraintStart_toEndOf="@+id/btnLevelConfig2"
+        app:layout_constraintTop_toTopOf="@+id/btnLevelConfig2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/configuracion"
+        android:textColor="@color/WHITE"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnSoundNowConfig"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/button_background_circle"
+        android:backgroundTint="@color/AMBER"
+        android:scaleType="center"
+        android:src="@drawable/ic_volume"
+        app:layout_constraintBottom_toBottomOf="@+id/seekBarSoundConfig"
+        app:layout_constraintStart_toEndOf="@+id/seekBarSoundConfig"
+        app:layout_constraintTop_toTopOf="@+id/seekBarSoundConfig" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

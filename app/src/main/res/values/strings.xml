@@ -43,5 +43,6 @@
     <string name="btn_dificil">Difícil</string>
     <string name="sonido">Sonido</string>
     <string name="musicoterapia">Musicoterapia</string>
+    <string name="configuracion">Configuración</string>
 
 </resources>

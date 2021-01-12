@@ -1,15 +1,17 @@
 package com.autism.figuritas.iu.config;
 
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.Switch;
+import android.widget.ImageButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -22,18 +24,18 @@ public class SoundFragment extends Fragment
 {
     private Bundle bundleConfig;
 
-    private MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayerMusic;
+    private MediaPlayer mediaPlayerSound;
 
     private TextView txtTitle;
 
-    private ImageView imgDisco;
-
     private ViewGroup viewGroup;
 
-    private Switch switchMusic;
-    private Switch switchSounds;
+    private SeekBar seekBarMusic;
+    private SeekBar seekBarSound;
 
     private Button btnNext;
+    private ImageButton btnSound;
 
     public SoundFragment()
     {
@@ -50,6 +52,10 @@ public class SoundFragment extends Fragment
             bundleConfig = getArguments();
         else
             bundleConfig = new Bundle();
+
+        //Create MediaPlayer
+        mediaPlayerMusic = MediaPlayer.create(getContext(), R.raw.ambient_music);
+        mediaPlayerSound = MediaPlayer.create(getContext(), R.raw.cuadrado);
     }
 
     @Override
@@ -60,59 +66,93 @@ public class SoundFragment extends Fragment
     }
 
     @Override
-    public void onStart()
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
-        super.onStart();
+        super.onViewCreated(view, savedInstanceState);
 
         //References
         this.txtTitle = getActivity().findViewById(R.id.txtTitleSound);
         this.viewGroup = getActivity().findViewById(R.id.viewGroupSound);
-        this.switchMusic = getActivity().findViewById(R.id.switchMusica);
-        this.switchSounds = getActivity().findViewById(R.id.switchSonido);
+        this.seekBarMusic = getActivity().findViewById(R.id.seekBarMusicaInitConfig);
+        this.seekBarSound = getActivity().findViewById(R.id.seekBarSoundInitConfig);
         this.btnNext = getActivity().findViewById(R.id.btnNextSounds);
+        this.btnSound = getActivity().findViewById(R.id.btnSoundNowInitConfig);
 
-        //Events for switch
-        this.switchMusic.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        //Events for seek bars
+        this.seekBarMusic.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
         {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b)
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b)
             {
-
-                if(mediaPlayer != null)
-                {
-                    if(b)
-                        mediaPlayer.start();
-                    else
-                        mediaPlayer.pause();
-                }
+                if(mediaPlayerMusic != null)
+                    mediaPlayerMusic.setVolume((i * 0.01f),(i * 0.01f));
             }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) { }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) { }
         });
 
-
-        this.switchSounds.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        //Events for seek bars
+        this.seekBarSound.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
         {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b)
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b)
             {
-
+                if(mediaPlayerSound != null)
+                    mediaPlayerSound.setVolume((i * 0.01f),(i * 0.01f));
             }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) { }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) { }
         });
+
 
         //Event click
-        btnNext.setOnClickListener(view -> nextFragment(view));
+        btnNext.setOnClickListener(  view1 -> nextFragment(view1) );
+        btnSound.setOnClickListener(view1 -> playSound(view1));
 
         String color = bundleConfig.getString("color", "#FFFFFF");
         changeColors(color);
     }
 
     @Override
-    public void onResume()
+    public void onStart()
     {
+        super.onStart();
+    }
+
+    @Override
+    public void onResume() {
         super.onResume();
 
         //Init music
-        mediaPlayer = MediaPlayer.create(getContext(), R.raw.ambient_music);
-        mediaPlayer.start();
+        if (mediaPlayerMusic == null)
+        {
+            mediaPlayerMusic = MediaPlayer.create(getContext(), R.raw.ambient_music);
+            mediaPlayerMusic.setVolume((seekBarMusic.getProgress() * 0.01f),(seekBarMusic.getProgress() * 0.01f));
+        }
+
+       mediaPlayerMusic.start();
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+
+        if(mediaPlayerMusic != null)
+            if(mediaPlayerMusic.isPlaying())
+                mediaPlayerMusic.pause();
+
+        if(mediaPlayerSound != null)
+            if(mediaPlayerSound.isPlaying())
+                mediaPlayerSound.stop();
     }
 
     @Override
@@ -120,14 +160,24 @@ public class SoundFragment extends Fragment
     {
         super.onStop();
 
-        if(mediaPlayer != null)
+        if(mediaPlayerMusic != null)
         {
-            if(mediaPlayer.isPlaying())
-                mediaPlayer.stop();
+            if(mediaPlayerMusic.isPlaying())
+                mediaPlayerMusic.stop();
 
-            mediaPlayer.release();
+            mediaPlayerMusic.release();
 
-            mediaPlayer = null;
+            mediaPlayerMusic = null;
+        }
+
+        if(mediaPlayerSound != null)
+        {
+            if(mediaPlayerSound.isPlaying())
+                mediaPlayerSound.stop();
+
+            mediaPlayerSound.release();
+
+            mediaPlayerSound = null;
         }
     }
 
@@ -203,14 +253,48 @@ public class SoundFragment extends Fragment
         btnNext.setBackgroundResource(button_background);
     }
 
+    private void playSound(View view)
+    {
+        if(mediaPlayerSound != null)
+        {
+            if (mediaPlayerSound.isPlaying())
+                mediaPlayerSound.stop();
+        }
+        else
+        {
+            mediaPlayerSound = MediaPlayer.create(getContext(), R.raw.cuadrado);
+            mediaPlayerSound.setVolume((seekBarSound.getProgress() * 0.01f),(seekBarSound.getProgress() * 0.01f));
+        }
+
+        mediaPlayerSound.start();
+    }
+
+    /**
+     * Method for save config sound
+     */
+    private void saveData()
+    {
+        //Save volume level in SharedPreferences
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+        editor.putInt("music_volume", seekBarMusic.getProgress());
+        editor.putInt("sound_volume", seekBarSound.getProgress());
+        editor.commit();
+
+        //Put Bundle
+        boolean statusMusic = seekBarMusic.getProgress() != 0;
+        boolean statusSound = seekBarSound.getProgress() != 0;
+
+        bundleConfig.putBoolean("music", statusMusic);
+        bundleConfig.putBoolean("sounds", statusSound);
+    }
+
     /**
      * Método para pasar al siguiente fragmento de la actividad. Fragment level
      * @param view
      */
     private void nextFragment(View view)
     {
-        bundleConfig.putBoolean("music", switchMusic.isChecked());
-        bundleConfig.putBoolean("sounds", switchSounds.isChecked());
+        saveData();
 
         Navigation.findNavController(view).navigate(R.id.action_soundFragment_to_levelFragment, bundleConfig);
     }
