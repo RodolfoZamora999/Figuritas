@@ -200,6 +200,7 @@
         android:backgroundTint="@color/AMBER"
         android:scaleType="center"
         android:src="@drawable/ic_volume"
+        android:soundEffectsEnabled="true"
         app:layout_constraintBottom_toBottomOf="@+id/seekBarSoundConfig"
         app:layout_constraintStart_toEndOf="@+id/seekBarSoundConfig"
         app:layout_constraintTop_toTopOf="@+id/seekBarSoundConfig" />

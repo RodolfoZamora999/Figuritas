@@ -2,6 +2,9 @@ package com.autism.figuritas.iu.components;
 
 import android.os.Handler;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -159,6 +162,7 @@ public class TimerView //extends TimerTask
         this.timerViewFinishListener = timerViewStopListener;
     }
 
+    @NonNull
     /**
      * Method for set TextView
      * @param textView

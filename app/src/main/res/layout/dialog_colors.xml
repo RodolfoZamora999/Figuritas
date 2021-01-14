@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imgColor1Dialog"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/AMBER"
+        android:tag="@string/AMBER"
+        android:elevation="2sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgColor2Dialog"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="5dp"
+        android:background="@color/ORANGE"
+        android:tag="@string/ORANGE"
+        android:elevation="2sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgColor1Dialog"
+        app:layout_constraintStart_toEndOf="@+id/imgColor1Dialog"
+        app:layout_constraintTop_toTopOf="@+id/imgColor1Dialog" />
+
+    <ImageView
+        android:id="@+id/imgColor3Dialog"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="5dp"
+        android:background="@color/PINK"
+        android:tag="@string/PINK"
+        android:elevation="2sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgColor2Dialog"
+        app:layout_constraintStart_toEndOf="@+id/imgColor2Dialog"
+        app:layout_constraintTop_toTopOf="@+id/imgColor2Dialog" />
+
+    <ImageView
+        android:id="@+id/imgColor4Dialog"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="5dp"
+        android:background="@color/RED"
+        android:tag="@string/RED"
+        android:elevation="2sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgColor3Dialog"
+        app:layout_constraintStart_toEndOf="@+id/imgColor3Dialog"
+        app:layout_constraintTop_toTopOf="@+id/imgColor3Dialog" />
+
+    <ImageView
+        android:id="@+id/imgColor5Dialog"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/WHITE"
+        android:tag="@string/WHITE"
+        android:elevation="2sp"
+        app:layout_constraintEnd_toStartOf="@+id/imgColor2Dialog"
+        app:layout_constraintStart_toStartOf="@+id/imgColor1Dialog"
+        app:layout_constraintTop_toBottomOf="@+id/imgColor1Dialog" />
+
+    <ImageView
+        android:id="@+id/imgColor6Dialog"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:elevation="2sp"
+        android:layout_marginStart="5dp"
+        android:background="@color/GREEN"
+        android:tag="@string/GREEN"
+        app:layout_constraintBottom_toBottomOf="@+id/imgColor5Dialog"
+        app:layout_constraintStart_toEndOf="@+id/imgColor5Dialog"
+        app:layout_constraintTop_toTopOf="@+id/imgColor5Dialog" />
+
+    <ImageView
+        android:id="@+id/imgColor7Dialog"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="5dp"
+        android:elevation="2sp"
+        android:background="@color/CYAN"
+        android:tag="@string/CYAN"
+        app:layout_constraintBottom_toBottomOf="@+id/imgColor6Dialog"
+        app:layout_constraintStart_toEndOf="@+id/imgColor6Dialog"
+        app:layout_constraintTop_toTopOf="@+id/imgColor6Dialog" />
+
+    <ImageView
+        android:id="@+id/imgColor8Dialog"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:elevation="2sp"
+        android:layout_marginStart="5dp"
+        android:background="@color/LIGHT_BLUE"
+        android:tag="@string/LIGHT_BLUE"
+        app:layout_constraintBottom_toBottomOf="@+id/imgColor7Dialog"
+        app:layout_constraintStart_toEndOf="@+id/imgColor7Dialog"
+        app:layout_constraintTop_toTopOf="@+id/imgColor7Dialog" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

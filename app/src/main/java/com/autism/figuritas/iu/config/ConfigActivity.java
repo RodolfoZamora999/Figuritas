@@ -1,5 +1,6 @@
 package com.autism.figuritas.iu.config;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.dynamicanimation.animation.DynamicAnimation;
@@ -9,6 +10,8 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -40,6 +43,7 @@ public class ConfigActivity extends AppCompatActivity
     private ImageView imgColor;
 
     private View lastView;
+    private View lastViewColor;
 
     private int level;
     private String currentColor;
@@ -52,8 +56,8 @@ public class ConfigActivity extends AppCompatActivity
         setContentView(R.layout.activity_config);
 
         Toolbar toolbar = findViewById(R.id.toolbarConfig);
-        //setSupportActionBar(toolbar);
-       // getSupportActionBar().setTitle(R.string.configuracion);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
 
         //Reference
         this.btnRegresar = findViewById(R.id.btnRegresarConfig);
@@ -67,12 +71,16 @@ public class ConfigActivity extends AppCompatActivity
         this.seekBarSound = findViewById(R.id.seekBarSoundConfig);
 
         //Event to Click event
-        this.btnRegresar.setOnClickListener(view -> onBackPressed());
+        this.btnRegresar.setOnClickListener(view -> initExitDialog(view));
+
+
         this.btnSave.setOnClickListener(view ->  saveConfigDatabase(view));
         this.btnLevel1.setOnClickListener(view -> springAnimation(view, 0));
         this.btnLevel2.setOnClickListener(view -> springAnimation(view, 1));
         this.btnLevel3.setOnClickListener(view -> springAnimation(view, 2));
         this.btnSound.setOnClickListener(view -> playSound(view));
+        this.imgColor.setOnClickListener(view -> initColorDialog(view));
+
 
         //Events to SeekBars
         this.seekBarMusic.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
@@ -224,12 +232,6 @@ public class ConfigActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onStop()
-    {
-        super.onStop();
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
 
@@ -286,14 +288,14 @@ public class ConfigActivity extends AppCompatActivity
         dataBase.getQueryExecutor().execute(()->
         {
             final long config = PreferenceManager.getDefaultSharedPreferences(ConfigActivity.this).getLong("current_user", 0);
-            final byte dificultad = (byte) level;
+            final byte difficulty = (byte) level;
             final boolean music = seekBarMusic.getProgress() != 0;
             final boolean sound = seekBarSound.getProgress() != 0;
             final String color =   currentColor != null ? currentColor : "#FFFFFF";
 
             Configuracion configuracion = new Configuracion();
             configuracion.id_config = config;
-            configuracion.dificultad = dificultad;
+            configuracion.dificultad = difficulty;
             configuracion.musica = music;
             configuracion.sonido = sound;
             configuracion.color = color;
@@ -307,10 +309,15 @@ public class ConfigActivity extends AppCompatActivity
             editor.commit();
 
             //Show update message
-            runOnUiThread(()-> Toast.makeText(this, "¡Configuración guardada!", Toast.LENGTH_LONG).show());
+            runOnUiThread(()-> Toast.makeText(this, R.string.configuracion_guardada, Toast.LENGTH_LONG).show());
         });
     }
 
+    /**
+     * Method to animate level buttons
+     * @param view
+     * @param level
+     */
     private void springAnimation(View view, int level)
     {
 
@@ -328,6 +335,10 @@ public class ConfigActivity extends AppCompatActivity
         this.level = level;
     }
 
+    /**
+     * Method to play Test volume sound
+     * @param view
+     */
     private void playSound(View view)
     {
         if(mediaPlayerSound != null)
@@ -339,6 +350,133 @@ public class ConfigActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Method to animate Dialog Buttons colors
+     * @param view
+     */
+    private void springAnimationDialog(View view)
+    {
+        SpringAnimation springAnimationX = new SpringAnimation(view, DynamicAnimation.SCALE_X, 0.6f);
+        SpringAnimation springAnimationY = new SpringAnimation(view, DynamicAnimation.SCALE_Y, 0.6f);
+        springAnimationX.start();
+        springAnimationY.start();
+
+        if(lastViewColor != null)
+        {
+            SpringAnimation springAnimationXLast = new SpringAnimation(lastViewColor, DynamicAnimation.SCALE_X, 1.0f);
+            SpringAnimation springAnimationYLast = new SpringAnimation(lastViewColor, DynamicAnimation.SCALE_Y, 1.0f);
+            springAnimationXLast.start();
+            springAnimationYLast.start();
+        }
+
+        //Get and set Drawable to ImgColor
+        imgColor.setImageDrawable(view.getBackground());
+
+        //Update color String current
+        if(view.getTag() != null)
+            currentColor = view.getTag().toString();
+
+        lastViewColor = view;
+    }
+
+    /**
+     * Method to show a AlertDialog with Colors
+     * @param view
+     */
+    private void initColorDialog(View view)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        //Inflate View
+        ViewGroup viewGroup = (ViewGroup) getLayoutInflater().inflate(R.layout.dialog_colors, null);
+
+        builder.setView(viewGroup);
+
+        //Magic :D
+        for(int i = 0; i < viewGroup.getChildCount(); i++)
+            viewGroup.getChildAt(i).setOnClickListener(view1 -> springAnimationDialog(view1));
+
+        builder.setPositiveButton(R.string.aceptar, (dialogInterface, i) ->
+        {
+            dialogInterface.dismiss();
+        });
+
+        builder.setTitle(R.string.seleccionar_color);
+
+        //More magic
+        AlertDialog alertDialog = builder.create();
+
+        // Set alertDialog "not focusable" so nav bar still hiding:
+        alertDialog.getWindow().
+                setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                        WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+
+        // Set full-screen mode (immersive sticky):
+        alertDialog.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                View.SYSTEM_UI_FLAG_FULLSCREEN |
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+
+        alertDialog.show();
+
+        // Set dialog focusable so we can avoid touching outside:
+        alertDialog.getWindow().
+                clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+    }
+
+    /**
+     * Method to show an AlertDialog
+     * @param view
+     */
+    private void initExitDialog(View view)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.confirmacion_salir);
+        builder.setMessage(R.string.message_exit_config);
+        builder.setPositiveButton(R.string.aceptar, (dialogInterface, i) ->
+        {
+            //Confirmation to exit event
+            super.onBackPressed();
+        });
+        builder.setNegativeButton(R.string.cancelar, ((dialogInterface, i) -> {
+            //Cancel exit event
+            dialogInterface.dismiss();
+        }));
+
+        //More magi
+        AlertDialog alertDialog = builder.create();
+
+        // Set alertDialog "not focusable" so nav bar still hiding:
+        alertDialog.getWindow().
+                setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                        WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+
+        // Set full-screen mode (immersive sticky):
+        alertDialog.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                View.SYSTEM_UI_FLAG_FULLSCREEN |
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+
+        alertDialog.show();
+
+        // Set dialog focusable so we can avoid touching outside:
+        alertDialog.getWindow().
+                clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+    }
+
+    /**
+     * Override method to call DialogAlert
+     */
+    @Override
+    public void onBackPressed()
+    {
+       // super.onBackPressed();
+        initExitDialog(null);
+    }
 
     /**
      * Do fullscreen activity

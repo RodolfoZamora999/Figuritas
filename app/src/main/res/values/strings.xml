@@ -3,7 +3,6 @@
     <string name="app_name">Figuritas</string>
     <string name="name">FIGURITAS</string>
 
-
     <!--Main Activity-->
     <string name="btnIniciar">Iniciar sesión</string>
     <string name="btnRegistro">Registrate</string>
@@ -25,8 +24,6 @@
     <string name="edad">Edad</string>
     <string name="email">Email</string>
     <string name="contrasena">Contraseña</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--Level Activity-->
     <string name="bonus_default">x0</string>
@@ -44,5 +41,22 @@
     <string name="sonido">Sonido</string>
     <string name="musicoterapia">Musicoterapia</string>
     <string name="configuracion">Configuración</string>
+    <string name="configuracion_guardada">¡Configuración guardada con exito!</string>
+
+    <!--Name colors-->
+    <string name="AMBER">#FFC107</string>
+    <string name="CYAN">#00BCD4</string>
+    <string name="PINK">#FF4081</string>
+    <string name="ORANGE">#FF8000</string>
+    <string name="RED">#F44336</string>
+    <string name="GREEN">#ACAF50</string>
+    <string name="LIGHT_BLUE">#03A9F4</string>
+    <string name="WHITE">#FFFFFF</string>
+
+    <!--DialogAlters-->
+    <string name="aceptar">Aceptar</string>
+    <string name="confirmacion_salir">¿Seguro que quiere salir?</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="message_exit_config">"Todos los cambios hechos sin guardar serán ignorados al salir "</string>
 
 </resources>

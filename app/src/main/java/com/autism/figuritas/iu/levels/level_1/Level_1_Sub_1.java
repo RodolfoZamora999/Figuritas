@@ -71,7 +71,7 @@ public class Level_1_Sub_1 extends Fragment implements TimerView.TimerViewFinish
 
         //Create instance of TimerView
         this.timerView = new TimerView();
-        this.timerView.setTime(0, 30);
+        this.timerView.setTime(0, 15);
         this.timerView.setTimerViewStopListener(this);
         this.timerView.setTextView(txtTimer);
 
@@ -113,15 +113,15 @@ public class Level_1_Sub_1 extends Fragment implements TimerView.TimerViewFinish
     @Override
     public void finishTimerView(TextView txtTimer, int mintes, int secods)
     {
-        getActivity().runOnUiThread(()->
-        {
-            Toast.makeText(getContext(), "¡Tiempo terminado!", Toast.LENGTH_LONG).show();
+           getActivity().runOnUiThread(()-> {
 
-            SpringAnimation rotation = new SpringAnimation(imgTimer, DynamicAnimation.ROTATION, 360);
-            rotation.getSpring().setStiffness(SpringForce.STIFFNESS_VERY_LOW);
+               Toast.makeText(getContext(), "¡Tiempo terminado!", Toast.LENGTH_LONG).show();
 
-            rotation.start();
-        });
+               SpringAnimation rotation = new SpringAnimation(imgTimer, DynamicAnimation.ROTATION, 360);
+               rotation.getSpring().setStiffness(SpringForce.STIFFNESS_VERY_LOW);
+
+               rotation.start();
+           });
     }
 
     @Override
