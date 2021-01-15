@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Figuritas">
         <activity
             android:name=".iu.config.ConfigActivity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".iu.session.RegisterActivity"
             android:screenOrientation="landscape" />

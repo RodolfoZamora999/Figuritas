@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import androidx.room.Room;
 
 import com.autism.figuritas.persistence.database.DataBase;
+import com.autism.figuritas.persistence.preferences.ConstantPreferences;
 
 public class MyDatabaseApplication extends Application
 {
@@ -24,14 +25,15 @@ public class MyDatabaseApplication extends Application
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         //Check values
-        if(!sharedPreferences.contains("current_user") || !sharedPreferences.contains("config_complete"))
+        if(!sharedPreferences.contains(ConstantPreferences.CURRENT_USER))
         {
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
-            editor.putLong("current_user", 0);
-            editor.putBoolean("config_complete", false);
-            editor.putInt("music_volume", 40);
-            editor.putInt("sound_volume", 60);
+            editor.putLong(ConstantPreferences.CURRENT_USER, 0);
+            editor.putBoolean(ConstantPreferences.CONFIG_COMPLETE, false);
+            editor.putInt(ConstantPreferences.MUSIC_VOLUME, 40);
+            editor.putInt(ConstantPreferences.SOUND_VOLUME, 60);
+            editor.putBoolean(ConstantPreferences.INIT_SESSION_AUTOMATIC, false);
             editor.commit();
         }
     }

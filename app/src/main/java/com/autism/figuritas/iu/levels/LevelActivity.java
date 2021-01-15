@@ -1,19 +1,22 @@
 package com.autism.figuritas.iu.levels;
 
-import android.content.ClipData;
-import android.content.ClipDescription;
-import android.graphics.drawable.Drawable;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.DragEvent;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.autism.figuritas.MyDatabaseApplication;
 import com.autism.figuritas.R;
+import com.autism.figuritas.persistence.database.Configuracion;
+import com.autism.figuritas.persistence.database.DataBase;
+import com.autism.figuritas.persistence.preferences.ConstantPreferences;
 
 public class LevelActivity extends AppCompatActivity
 {
-    private static MediaPlayer mediaPlayerSingle;
+    private MediaPlayer mediaPlayerMusic;
+    private Configuracion configuration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -21,6 +24,11 @@ public class LevelActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_level);
+
+        this.mediaPlayerMusic =  mediaPlayerMusic = MediaPlayer.create(this, R.raw.ambient_music);
+
+        //Load Configuration from Database
+        loadConfig();
     }
 
     @Override
@@ -29,6 +37,20 @@ public class LevelActivity extends AppCompatActivity
         super.onResume();
 
         hideSystemUI();
+
+        if(mediaPlayerMusic != null)
+            mediaPlayerMusic.start();
+
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+
+        if(mediaPlayerMusic != null)
+            if (mediaPlayerMusic.isPlaying())
+                mediaPlayerMusic.pause();
     }
 
     @Override
@@ -37,14 +59,68 @@ public class LevelActivity extends AppCompatActivity
         super.onDestroy();
 
         //Kill MediaPlayer
-        if(mediaPlayerSingle != null)
+        if(mediaPlayerMusic != null)
         {
-            if(mediaPlayerSingle.isPlaying())
-                mediaPlayerSingle.stop();
+            if(mediaPlayerMusic.isPlaying())
+                mediaPlayerMusic.stop();
 
-            mediaPlayerSingle.release();
-            mediaPlayerSingle = null;
+            mediaPlayerMusic.release();
+            mediaPlayerMusic = null;
         }
+    }
+
+    /**
+     * Method to load config from database
+     */
+    protected void loadConfig()
+    {
+        //Get current id user from SharedPreferences
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final long currentUser = preferences.getLong(ConstantPreferences.CURRENT_USER, 0);
+        final int levelMusic = preferences.getInt(ConstantPreferences.MUSIC_VOLUME, 40);
+        final int levelSound = preferences.getInt(ConstantPreferences.SOUND_VOLUME, 60);
+
+
+        DataBase dataBase = ((MyDatabaseApplication)getApplication()).getDataBase();
+
+        dataBase.getQueryExecutor().execute(()->
+        {
+            configuration = dataBase.getDAO().getConfig(currentUser);
+            configuration.volumeSound = levelSound;
+            configuration.volumeMusic = levelMusic;
+
+            mediaPlayerMusic.setVolume((configuration.volumeMusic * 0.01f),
+                    (configuration.volumeMusic * 0.01f));
+        });
+    }
+
+    /**
+     * Very import: This method called after created activity in Fragment
+     * Method to get Configuration
+     */
+    public Configuracion getConfiguration()
+    {
+        if(configuration == null)
+            loadConfig();
+
+       if(configuration == null)
+           Log.d("PRINT", "El metodo getConfig es nulo");
+
+        return configuration;
+    }
+
+    /**
+     * Method to get an instance of MediaPlayer Activity
+     * @return MediaPlayer Activity Level
+     */
+    public MediaPlayer getMediaPlayerMusic()
+    {
+        if(mediaPlayerMusic != null)
+            return mediaPlayerMusic;
+
+        mediaPlayerMusic = MediaPlayer.create(this, R.raw.ambient_music);
+
+        return mediaPlayerMusic;
     }
 
     /**
@@ -60,104 +136,5 @@ public class LevelActivity extends AppCompatActivity
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
-    }
-
-
-    //Todo: Moficar en un futuro
-    public MediaPlayer getMediaPlayerSingleton()
-    {
-        if(mediaPlayerSingle != null)
-            return  mediaPlayerSingle;
-
-       /* mediaPlayerSingle = new MediaPlayer();
-        mediaPlayerSingle.setOnPreparedListener(new MediaPlayer.OnPreparedListener()
-        {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer)
-            {
-                mediaPlayer.start();
-            }
-        });*/
-
-        mediaPlayerSingle = MediaPlayer.create(this, R.raw.ambient_music);
-
-        return mediaPlayerSingle;
-    }
-
-    /**
-     * Implementation for drag and drop figures
-     */
-    public static class DragImplementation implements View.OnDragListener
-    {
-        @Override
-        public boolean onDrag(View view, DragEvent dragEvent)
-        {
-            int action = dragEvent.getAction();
-
-            if(action == DragEvent.ACTION_DRAG_STARTED)
-            {
-                String figure_tag = ((ImageView)dragEvent.getLocalState()).getTag().toString();
-
-                if(figure_tag.equals(view.getTag()))
-                    return true;
-                else
-                    return false;
-            }
-
-            if(action == DragEvent.ACTION_DROP)
-            {
-                String tag = dragEvent.getClipData().getItemAt(0).getText().toString();
-
-                if(tag.equals(view.getTag().toString()))
-                    return true;
-                else
-                    return false;
-            }
-
-            if(action == DragEvent.ACTION_DRAG_ENDED)
-            {
-                if(dragEvent.getResult())
-                {
-                    //Update drawable slock
-                    Drawable drawable = ((ImageView)dragEvent.getLocalState()).getDrawable();
-                    ((ImageView)view).setImageDrawable(drawable);
-
-                    ((ImageView)dragEvent.getLocalState()).setVisibility(View.INVISIBLE);
-                    ((ImageView)dragEvent.getLocalState()).setEnabled(false);
-                }
-
-                View view_drag = (View)dragEvent.getLocalState();
-                if (view_drag.isEnabled())
-                    view_drag.setVisibility(View.VISIBLE);
-
-                return true;
-            }
-
-            return false;
-        }
-
-        /**
-         * Method for start image drag
-         * @param view
-         */
-        public static void startDrag(View view)
-        {
-            //Invisible view
-            view.setVisibility(View.INVISIBLE);
-
-            String name_image = view.getTag().toString();
-
-            ClipData.Item item = new ClipData.Item(name_image);
-
-            ClipData clipData = new ClipData(view.getTag().toString(),
-                    new String[]{ClipDescription.MIMETYPE_TEXT_PLAIN}, item);
-
-            // View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
-
-            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
-
-            //Start drag
-            view.startDrag(clipData, shadowBuilder, view, View.DRAG_FLAG_OPAQUE);
-        }
     }
 }

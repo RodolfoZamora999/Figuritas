@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -21,6 +22,7 @@ import com.autism.figuritas.MyDatabaseApplication;
 import com.autism.figuritas.R;
 import com.autism.figuritas.persistence.database.Configuracion;
 import com.autism.figuritas.persistence.database.DataBase;
+import com.autism.figuritas.persistence.preferences.ConstantPreferences;
 
 public class ConfigActivity extends AppCompatActivity
 {
@@ -129,7 +131,7 @@ public class ConfigActivity extends AppCompatActivity
 
         //Create MediaPlayerInstance
         this.mediaPlayerMusic = MediaPlayer.create(this, R.raw.ambient_music);
-        this.mediaPlayerSound = MediaPlayer.create(this, R.raw.cuadrado);
+        this.mediaPlayerSound = MediaPlayer.create(this, R.raw.square);
 
         //Load database config
         loadConfigDatabase();
@@ -137,16 +139,16 @@ public class ConfigActivity extends AppCompatActivity
 
     /**
      * Method to update IU config
-     * @param configuracion
+     * @param configuration
      */
-    private void updateConfigIU(Configuracion configuracion, int volumeMusic, int volumeSound)
+    private void updateConfigIU(Configuracion configuration)
     {
-        this.mediaPlayerMusic.setVolume((volumeMusic * 0.01f), (volumeMusic * 0.01f));
-        this.mediaPlayerSound.setVolume((volumeMusic * 0.01f), (volumeMusic * 0.01f));
-        this.seekBarMusic.setProgress(volumeMusic);
-        this.seekBarSound.setProgress(volumeSound);
+        this.mediaPlayerMusic.setVolume((configuration.volumeMusic * 0.01f), (configuration.volumeMusic * 0.01f));
+        this.mediaPlayerSound.setVolume((configuration.volumeSound * 0.01f), (configuration.volumeSound * 0.01f));
+        this.seekBarMusic.setProgress(configuration.volumeMusic);
+        this.seekBarSound.setProgress(configuration.volumeSound);
 
-        switch (configuracion.color)
+        switch (configuration.color)
         {
             case "#FFC107":
                imgColor.setBackgroundResource(R.color.AMBER);
@@ -186,7 +188,7 @@ public class ConfigActivity extends AppCompatActivity
                 break;
         }
 
-        switch (configuracion.dificultad)
+        switch (configuration.dificultad)
         {
             case 0:
                 btnLevel1.setRotationX(60f);
@@ -267,14 +269,16 @@ public class ConfigActivity extends AppCompatActivity
         {
             //Get id config
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-            final long idConfig = preferences.getLong("current_user", 0);
-            int volumeMusic = preferences.getInt("music_volume", 40);
-            int volumeSound = preferences.getInt("sound_volume", 70);
+            final long idConfig = preferences.getLong(ConstantPreferences.CURRENT_USER, 0);
+            int volumeMusic = preferences.getInt(ConstantPreferences.MUSIC_VOLUME, 40);
+            int volumeSound = preferences.getInt(ConstantPreferences.SOUND_VOLUME, 70);
 
-            final Configuracion configuracion = database.getDAO().getConfig(idConfig);
+            final Configuracion configuration = database.getDAO().getConfig(idConfig);
+            configuration.volumeMusic = volumeMusic;
+            configuration.volumeSound = volumeSound;
 
             runOnUiThread(()->
-                    updateConfigIU(configuracion, volumeMusic, volumeSound));
+                    updateConfigIU(configuration));
         });
     }
 
@@ -304,12 +308,17 @@ public class ConfigActivity extends AppCompatActivity
 
             //Update Shared
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(ConfigActivity.this).edit();
-            editor.putInt("music_volume", seekBarMusic.getProgress());
-            editor.putInt("sound_volume", seekBarSound.getProgress());
+            editor.putInt(ConstantPreferences.MUSIC_VOLUME, seekBarMusic.getProgress());
+            editor.putInt(ConstantPreferences.SOUND_VOLUME, seekBarSound.getProgress());
             editor.commit();
 
             //Show update message
-            runOnUiThread(()-> Toast.makeText(this, R.string.configuracion_guardada, Toast.LENGTH_LONG).show());
+            runOnUiThread(()-> {
+                Toast toast = Toast.makeText(this, R.string.configuracion_guardada, Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 120, 100);
+                toast.show();
+            }
+            );
         });
     }
 
@@ -401,10 +410,9 @@ public class ConfigActivity extends AppCompatActivity
             dialogInterface.dismiss();
         });
 
-        builder.setTitle(R.string.seleccionar_color);
-
         //More magic
         AlertDialog alertDialog = builder.create();
+        alertDialog.setCanceledOnTouchOutside(false);
 
         // Set alertDialog "not focusable" so nav bar still hiding:
         alertDialog.getWindow().
@@ -447,6 +455,7 @@ public class ConfigActivity extends AppCompatActivity
 
         //More magi
         AlertDialog alertDialog = builder.create();
+        alertDialog.setCanceledOnTouchOutside(false);
 
         // Set alertDialog "not focusable" so nav bar still hiding:
         alertDialog.getWindow().

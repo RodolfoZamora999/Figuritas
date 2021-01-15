@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import com.autism.figuritas.R;
+import com.autism.figuritas.persistence.preferences.ConstantPreferences;
 
 /**
  * Fragmento de configuración del sonido
@@ -55,7 +56,7 @@ public class SoundFragment extends Fragment
 
         //Create MediaPlayer
         mediaPlayerMusic = MediaPlayer.create(getContext(), R.raw.ambient_music);
-        mediaPlayerSound = MediaPlayer.create(getContext(), R.raw.cuadrado);
+        mediaPlayerSound = MediaPlayer.create(getContext(), R.raw.square);
     }
 
     @Override
@@ -262,7 +263,7 @@ public class SoundFragment extends Fragment
         }
         else
         {
-            mediaPlayerSound = MediaPlayer.create(getContext(), R.raw.cuadrado);
+            mediaPlayerSound = MediaPlayer.create(getContext(), R.raw.square);
             mediaPlayerSound.setVolume((seekBarSound.getProgress() * 0.01f),(seekBarSound.getProgress() * 0.01f));
         }
 
@@ -276,8 +277,8 @@ public class SoundFragment extends Fragment
     {
         //Save volume level in SharedPreferences
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
-        editor.putInt("music_volume", seekBarMusic.getProgress());
-        editor.putInt("sound_volume", seekBarSound.getProgress());
+        editor.putInt(ConstantPreferences.MUSIC_VOLUME, seekBarMusic.getProgress());
+        editor.putInt(ConstantPreferences.SOUND_VOLUME, seekBarSound.getProgress());
         editor.commit();
 
         //Put Bundle

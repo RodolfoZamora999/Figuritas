@@ -2,6 +2,7 @@ package com.autism.figuritas.persistence.database;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 /**
@@ -25,6 +26,13 @@ public class Configuracion
 
     @ColumnInfo(name = "colour")
     public String color;
+
+    //Attributes ignores to Database
+    @Ignore
+    public int volumeMusic;
+
+    @Ignore
+    public int volumeSound;
 
     public Configuracion(long id_config, byte dificultad, boolean musica, boolean sonido, String color)
     {

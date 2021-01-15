@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.autism.figuritas.MyDatabaseApplication;
 import com.autism.figuritas.R;
 import com.autism.figuritas.persistence.database.Configuracion;
 import com.autism.figuritas.persistence.database.DataBase;
+import com.autism.figuritas.persistence.preferences.ConstantPreferences;
 
 /**
  * Fragmento para la configuración del nivel
@@ -209,7 +211,7 @@ public class LevelFragment extends Fragment
         configuracion.dificultad = (byte)level;
 
         //Complete config
-        sharedPreferences.edit().putBoolean("config_complete", true).commit();
+        sharedPreferences.edit().putBoolean(ConstantPreferences.CONFIG_COMPLETE, true).apply();
 
         //Update configuration on database
         DataBase dataBase = ((MyDatabaseApplication)getActivity().getApplication()).getDataBase();
@@ -218,8 +220,11 @@ public class LevelFragment extends Fragment
             //Insert first config for user
             dataBase.getDAO().insertConfig(configuracion);
 
-            getActivity().runOnUiThread(()-> Toast.makeText(getContext(), "¡Configuración guardada con exito!",
-                    Toast.LENGTH_LONG).show());
+            getActivity().runOnUiThread(()-> {
+                Toast toast = Toast.makeText(getContext(), R.string.configuracion_guardada, Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 120, 100);
+                toast.show();
+            });
         });
 
         //Close Config Activity

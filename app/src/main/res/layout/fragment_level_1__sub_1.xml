@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".iu.levels.level_1.Level_1_Sub_1">
+    tools:context=".iu.levels.level_1.Level_1">
 
     <include
         layout="@layout/activity_level_interface"
@@ -39,18 +39,18 @@
 
 
     <ImageView
-        android:id="@+id/imgCircleSlock_1_1"
+        android:id="@+id/imgCircleSlot_1_1"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="268dp"
         android:src="@drawable/ic_circle_slock"
-        app:layout_constraintBottom_toBottomOf="@+id/imgSquareSlock_1_1"
-        app:layout_constraintStart_toEndOf="@+id/imgSquareSlock_1_1"
-        app:layout_constraintTop_toTopOf="@+id/imgSquareSlock_1_1"
+        app:layout_constraintBottom_toBottomOf="@+id/imgSquareSlot_1_1"
+        app:layout_constraintStart_toEndOf="@+id/imgSquareSlot_1_1"
+        app:layout_constraintTop_toTopOf="@+id/imgSquareSlot_1_1"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imgSquareSlock_1_1"
+        android:id="@+id/imgSquareSlot_1_1"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/ic_square_slock"

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/level_1_Sub_1"
-        android:name="com.autism.figuritas.iu.levels.level_1.Level_1_Sub_1"
+        android:name="com.autism.figuritas.iu.levels.level_1.Level_1"
         android:label="fragment_level_1__sub_1"
         tools:layout="@layout/fragment_level_1__sub_1" />
 </navigation>
