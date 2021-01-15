@@ -50,12 +50,6 @@ public class StatisticsLevelDialog extends DialogFragment
                 View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
-        //alertDialog.show();
-
-        // Set dialog focusable so we can avoid touching outside:
-        /*alertDialog.getWindow().
-                clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);*/
-
         return alertDialog;
     }
 }

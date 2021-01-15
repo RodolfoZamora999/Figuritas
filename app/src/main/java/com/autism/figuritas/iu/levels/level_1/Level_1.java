@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.autism.figuritas.R;
 import com.autism.figuritas.iu.components.BonusView;
-import com.autism.figuritas.iu.components.ChronometerView;
+import com.autism.figuritas.iu.components.StatisticsLevelDialog;
 import com.autism.figuritas.iu.levels.AbstractLevel;
 import com.autism.figuritas.iu.utilities.DragImplementation;
 
@@ -48,18 +48,16 @@ public class Level_1 extends AbstractLevel
         TextView txtTimer = getActivity().findViewById(R.id.txtTimer);
         TextView txtBonus = getActivity().findViewById(R.id.txtBonus);
 
+        //Set number shape count
+        setShapeCount(2);
 
-        //Create instance of TimerView
-        ChronometerView chronometerView = new ChronometerView();
-        chronometerView.setTextView(txtTimer);
-        setChronometerView(chronometerView);
+        //Set textView for Chronometer
+        setTextViewToChronometerView(txtTimer);
 
-        //Create BonusView
-        BonusView bonusView = new BonusView();
-        bonusView.setTextView(txtBonus);
-        bonusView.setBonusUpdateListener(this);
-        bonusView.setImageView(imgBonus);
-        setBonusView(bonusView);
+        //Set components in BonusView
+        setTextViewToBonusView(txtBonus);
+        setImageViewToBonusView(imgBonus);
+
 
         //Tag for images
         imgCircle.setTag("circle");
@@ -94,8 +92,13 @@ public class Level_1 extends AbstractLevel
     }
 
     @Override
-    public void terminatedLevel()
+    public void terminatedLevel(int totalShapes)
     {
-        Toast.makeText(getContext(), "Nivel terminado",  Toast.LENGTH_LONG).show();
+        //Finish and get Time of Chronometer
+        String time = finishChronometerViwLevel();
+        Toast.makeText(getContext(), "Nivel terminado con: " + time,  Toast.LENGTH_LONG).show();
+
+        StatisticsLevelDialog statisticsLevelDialog =  new StatisticsLevelDialog();
+        statisticsLevelDialog.show(getActivity().getSupportFragmentManager(), "fragment_level_1");
     }
 }

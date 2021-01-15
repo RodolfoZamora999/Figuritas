@@ -2,7 +2,6 @@ package com.autism.figuritas.iu.levels;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,16 +14,18 @@ import com.autism.figuritas.R;
 import com.autism.figuritas.iu.components.BonusView;
 import com.autism.figuritas.iu.components.ChronometerView;
 import com.autism.figuritas.iu.utilities.DragImplementation;
+import com.autism.figuritas.iu.utilities.MonitorLevel;
 import com.autism.figuritas.persistence.database.Configuracion;
 
 public abstract class AbstractLevel extends Fragment
-        implements DragImplementation.DragSuccessfulListener, BonusView.BonusUpdateListener
+        implements DragImplementation.DragSuccessfulListener, BonusView.BonusUpdateListener, MonitorLevel.TerminatedLevelListener
 {
     private Configuracion configuration;
     private MediaPlayer mediaPlayerSound;
 
     private ChronometerView chronometerView;
     private BonusView bonusView;
+    private MonitorLevel monitorLevel;
 
     public AbstractLevel()
     {
@@ -32,11 +33,29 @@ public abstract class AbstractLevel extends Fragment
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+
+        //Instance ChronometerView
+        chronometerView = new ChronometerView();
+
+        //Instance BonusView
+        bonusView = new BonusView();
+        bonusView.setBonusUpdateListener(this);
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
 
+        //Get configuration from Activity
         configuration = ((LevelActivity)getActivity()).getConfiguration();
+
+        //Autodetect shapes
+        monitorLevel = new MonitorLevel();
+        monitorLevel.setTerminatedLevelListener(this);
     }
 
     public void playFigureSong(FIGURES figures) {
@@ -74,21 +93,56 @@ public abstract class AbstractLevel extends Fragment
     }
 
     /**
-     * Set a ChronometerView
-     * @param chronometerView Chronometer object
+     * Method than get String time of ChronometerView and stop, reset ChronometerView
+     * @return A String time of ChronometerView
      */
-    protected void setChronometerView(ChronometerView chronometerView)
+    public String finishChronometerViwLevel()
     {
-        this.chronometerView = chronometerView;
+        String time;
+
+        chronometerView.pauseTimerView();
+        time = chronometerView.getTextView().getText().toString();
+        chronometerView.resetChronometerView();
+
+        return time != null ? time : "00:00";
+    }
+
+
+    /**
+     * Method to set total shapes available in the level
+     * @param shapeCount Total shapes in the level
+     */
+    public void setShapeCount(int shapeCount)
+    {
+        this.monitorLevel.setTotalShapes(shapeCount);
+    }
+
+
+    /**
+     * Set a TextView to ChronometerView
+     * @param txtTimer A TextView to show timer of TimerView
+     */
+    public void setTextViewToChronometerView(TextView txtTimer)
+    {
+        this.chronometerView.setTextView(txtTimer);
     }
 
     /**
-     *
-     * @param bonusView
+     * Set a TextView to BonusView to show data
+     * @param txtBonus A TextView to BonusView
      */
-    protected void setBonusView(BonusView bonusView)
+    public void setTextViewToBonusView(TextView txtBonus)
     {
-        this.bonusView = bonusView;
+        this.bonusView.setTextView(txtBonus);
+    }
+
+    /**
+     * Set a ImageView to BonusView to animated
+     * @param imgBonus A ImageView to BonusView
+     */
+    public void setImageViewToBonusView(ImageView imgBonus)
+    {
+        this.bonusView.setImageView(imgBonus);
     }
 
     @Override
@@ -105,7 +159,10 @@ public abstract class AbstractLevel extends Fragment
     public void dragSuccessful(View view)
     {
         if(bonusView != null)
-            bonusView.updateBonus(10);
+            bonusView.updateBonus(25);
+
+        if(monitorLevel != null)
+            monitorLevel.incrementFiguresComplete();
     }
 
     @Override
@@ -153,11 +210,6 @@ public abstract class AbstractLevel extends Fragment
         if(this.chronometerView != null)
             this.chronometerView.resetChronometerView();
     }
-
-    /**
-     *You must implement and call this method when the level ends
-     */
-    public abstract void terminatedLevel();
 
     /**
      * Enum for All available

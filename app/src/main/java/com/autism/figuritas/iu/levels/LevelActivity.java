@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import com.autism.figuritas.MyDatabaseApplication;
@@ -100,12 +99,6 @@ public class LevelActivity extends AppCompatActivity
      */
     public Configuracion getConfiguration()
     {
-        if(configuration == null)
-            loadConfig();
-
-       if(configuration == null)
-           Log.d("PRINT", "El metodo getConfig es nulo");
-
         return configuration;
     }
 
