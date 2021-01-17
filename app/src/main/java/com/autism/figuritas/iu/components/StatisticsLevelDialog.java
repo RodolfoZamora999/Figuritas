@@ -49,6 +49,12 @@ public class StatisticsLevelDialog extends DialogFragment
                     //Close Dialog
                     dismiss();
 
+                    if(getArguments().getInt("next_level", 0) == -1)
+                    {
+                        getActivity().finish();
+                        return;
+                    }
+
                     Navigation.findNavController(getActivity(), R.id.fragmentHostLevels).
                             navigate(getArguments().getInt("next_level", 0));
                 });

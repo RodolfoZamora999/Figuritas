@@ -1,4 +1,4 @@
-package com.autism.figuritas.iu.levels.level_3;
+package com.autism.figuritas.iu.levels.level_4;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,14 +15,15 @@ import com.autism.figuritas.iu.components.StatisticsLevelDialog;
 import com.autism.figuritas.iu.levels.AbstractLevel;
 import com.autism.figuritas.iu.utilities.DragImplementation;
 
-public class Level_3 extends AbstractLevel
+public class Level_4 extends AbstractLevel
 {
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_level_3, null);
+        return inflater.inflate(R.layout.fragment_level_4, null);
     }
 
     @Override
@@ -37,10 +38,12 @@ public class Level_3 extends AbstractLevel
         ImageView imgSquare = fragmentCurrent.findViewById(R.id.imgSquare);
         ImageView imgTriangle = fragmentCurrent.findViewById(R.id.imgTriangle);
         ImageView imgPentagon = fragmentCurrent.findViewById(R.id.imgPentagon);
+        ImageView imgStar = fragmentCurrent.findViewById(R.id.imgStar);
         ImageView imgCircleSlot = fragmentCurrent.findViewById(R.id.imgCircleSlot);
         ImageView imgSquareSlot = fragmentCurrent.findViewById(R.id.imgSquareSlot);
         ImageView imgTriangleSlot = fragmentCurrent.findViewById(R.id.imgTriangleSlot);
         ImageView imgPentagonSlot = fragmentCurrent.findViewById(R.id.imgPentagonSlot);
+        ImageView imgStarSlot = fragmentCurrent.findViewById(R.id.imgStarSlot);
         ImageButton btnClose = fragmentCurrent.findViewById(R.id.btnExit);
         ImageButton btnReboot = fragmentCurrent.findViewById(R.id.btnReboot);
         ImageView imgTimer = fragmentCurrent.findViewById(R.id.imgTimer);
@@ -49,7 +52,7 @@ public class Level_3 extends AbstractLevel
         TextView txtBonus = fragmentCurrent.findViewById(R.id.txtBonus);
 
         //Set number shape count
-        setShapeCount(4);
+        setShapeCount(5);
 
         //Set textView for Chronometer
         setTextViewToChronometerView(txtTimer);
@@ -64,10 +67,12 @@ public class Level_3 extends AbstractLevel
         imgSquare.setTag("square");
         imgTriangle.setTag("triangle");
         imgPentagon.setTag("pentagon");
+        imgStar.setTag("star");
         imgCircleSlot.setTag("circle");
         imgSquareSlot.setTag("square");
         imgTriangleSlot.setTag("triangle");
         imgPentagonSlot.setTag("pentagon");
+        imgStarSlot.setTag("star");
 
         //Event for click event
         btnClose.setOnClickListener(view ->
@@ -86,6 +91,7 @@ public class Level_3 extends AbstractLevel
         imgSquare.setOnClickListener(view -> playFigureSong(AbstractLevel.FIGURES.SQUARE));
         imgTriangle.setOnClickListener(view -> playFigureSong(FIGURES.TRIANGLE));
         imgPentagon.setOnClickListener(view -> playFigureSong(FIGURES.PENTAGON));
+        imgStar.setOnClickListener(view -> playFigureSong(FIGURES.STAR));
 
         //DragEvent for Figures
         DragImplementation drag = new DragImplementation();
@@ -94,11 +100,13 @@ public class Level_3 extends AbstractLevel
         imgSquareSlot.setOnDragListener(drag);
         imgTriangleSlot.setOnDragListener(drag);
         imgPentagonSlot.setOnDragListener(drag);
+        imgStarSlot.setOnDragListener(drag);
 
         imgCircle.setOnLongClickListener(view ->{ DragImplementation.startDrag(view); return true;});
         imgSquare.setOnLongClickListener(view -> { DragImplementation.startDrag(view); return true;});
         imgTriangle.setOnLongClickListener(view -> { DragImplementation.startDrag(view); return true;});
         imgPentagon.setOnLongClickListener(view -> { DragImplementation.startDrag(view); return true;});
+        imgStar.setOnLongClickListener(view -> { DragImplementation.startDrag(view); return true;});
 
     }
 
@@ -109,7 +117,7 @@ public class Level_3 extends AbstractLevel
         pauseChronometerView();
 
         Bundle bundleData = getDataFinishLevel();
-        bundleData.putInt("next_level", R.id.action_fragment_level_3_to_level_4);
+        bundleData.putInt("next_level", -1);
 
         StatisticsLevelDialog statisticsLevelDialog =  new StatisticsLevelDialog();
         statisticsLevelDialog.setArguments(bundleData);

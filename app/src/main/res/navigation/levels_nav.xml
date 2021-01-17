@@ -36,6 +36,18 @@
         android:id="@+id/fragment_level_3"
         android:name="com.autism.figuritas.iu.levels.level_3.Level_3"
         android:label="fragment_Level_3"
-        tools:layout="@layout/fragment_level_3"/>
+        tools:layout="@layout/fragment_level_3">
+        <action
+            android:id="@+id/action_fragment_level_3_to_level_4"
+            app:destination="@id/fragment_level_4"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/levels_nav_graph"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_level_4"
+        android:name="com.autism.figuritas.iu.levels.level_4.Level_4"
+        android:label="fragment_level_4"
+        tools:layout="@layout/fragment_level_4" />
 
 </navigation>

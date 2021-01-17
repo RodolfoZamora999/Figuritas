@@ -4,7 +4,39 @@
     android:viewportWidth="100"
     android:viewportHeight="100">
   <path
-      android:pathData="m74.902,63.6 l5.995,35.815 -30.754,-16.795 -30.628,17.047 5.728,-35.863 -24.924,-25.279 34.294,-5.37 15.224,-32.67 15.467,32.544 34.333,5.088z"
+      android:pathData="m75.095,63.818 l6.036,36.11 -30.965,-16.933 -30.838,17.187 5.767,-36.159 -25.095,-25.488 34.53,-5.414 15.328,-32.94 15.573,32.813 34.569,5.13z"
+      android:strokeLineJoin="round"
+      android:strokeWidth="1"
+      android:fillColor="#0d0c07"
+      android:strokeColor="#00000000"
+      android:fillAlpha="0.07843137"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m74.844,63.681 l5.976,35.749 -30.656,-16.764 -30.53,17.015 5.709,-35.797 -24.844,-25.233 34.184,-5.36 15.175,-32.61 15.418,32.485 34.223,5.079z"
+      android:strokeLineJoin="round"
+      android:strokeWidth="1"
+      android:fillColor="#0d0c07"
+      android:strokeColor="#00000000"
+      android:fillAlpha="0.07843137"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m74.593,63.545 l5.916,35.388 -30.346,-16.595 -30.221,16.844 5.652,-35.435 -24.593,-24.978 33.839,-5.306 15.022,-32.281 15.262,32.156 33.877,5.027z"
+      android:strokeLineJoin="round"
+      android:strokeWidth="1"
+      android:fillColor="#0d0c07"
+      android:strokeColor="#00000000"
+      android:fillAlpha="0.07843137"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m74.092,63.272 l5.795,34.666 -29.727,-16.256 -29.605,16.5 5.536,-34.712 -24.092,-24.468 33.148,-5.197 14.715,-31.622 14.95,31.5 33.186,4.925z"
+      android:strokeLineJoin="round"
+      android:strokeWidth="1"
+      android:fillColor="#0d0c07"
+      android:strokeColor="#00000000"
+      android:fillAlpha="0.07843137"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m73.841,63.136 l5.735,34.305 -29.417,-16.087 -29.296,16.328 5.479,-34.351 -23.841,-24.213 32.803,-5.143 14.562,-31.293 14.795,31.172 32.84,4.873z"
       android:strokeLineJoin="round"
       android:strokeWidth="1"
       android:fillColor="#f8be37"
