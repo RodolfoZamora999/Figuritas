@@ -5,9 +5,12 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.navigation.Navigation;
 import com.autism.figuritas.R;
 
 /**
@@ -20,22 +23,44 @@ public class StatisticsLevelDialog extends DialogFragment
 
     }
 
-
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        //builder.setTitle("I'm simple title");
-        //builder.setMessage("And me I'm simple text");
-        builder.setView(R.layout.statistics_level_dialog);
-        //builder.setPositiveButton("Aceptar", null);
+
+        View view = getLayoutInflater().inflate(R.layout.statistics_level_dialog, null);
+
+        if(getArguments() != null) {
+            TextView txtTime = view.findViewById(R.id.txtTimerDialog);
+            TextView txtBonus = view.findViewById(R.id.txtBonusDialog);
+            TextView txtShapes = view.findViewById(R.id.txtShapesCountDialog);
+            Button btnNext = view.findViewById(R.id.btnNextLevelDialog);
+
+            txtTime.setText(getString(R.string.tiempo_total) + ": " + getArguments().getString("time", "00:00"));
+            txtBonus.setText(getString(R.string.bonus_obtenido) + ": " + String.valueOf(getArguments().getInt("bonus", 0)));
+            txtShapes.setText(getString(R.string.total_figuras) + ": " + String.valueOf(getArguments().getInt("shape_count", 0)));
+
+            //Next Level fragment
+            if (getArguments().getInt("next_level", 0) != 0)
+            {
+                btnNext.setOnClickListener(view1 ->
+                {
+                    //Close Dialog
+                    dismiss();
+
+                    Navigation.findNavController(getActivity(), R.id.fragmentHostLevels).
+                            navigate(getArguments().getInt("next_level", 0));
+                });
+            }
+        }
+
+        builder.setView(view);
 
         //Create Dialog
         AlertDialog alertDialog = builder.create();
         alertDialog.setCancelable(false);
         alertDialog.setCanceledOnTouchOutside(false);
-
 
         // Set alertDialog "not focusable" so nav bar still hiding:
         alertDialog.getWindow().

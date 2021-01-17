@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.autism.figuritas.R;
-import com.autism.figuritas.iu.components.BonusView;
 import com.autism.figuritas.iu.components.StatisticsLevelDialog;
 import com.autism.figuritas.iu.levels.AbstractLevel;
 import com.autism.figuritas.iu.utilities.DragImplementation;
@@ -94,11 +93,14 @@ public class Level_1 extends AbstractLevel
     @Override
     public void terminatedLevel(int totalShapes)
     {
-        //Finish and get Time of Chronometer
-        String time = finishChronometerViwLevel();
-        Toast.makeText(getContext(), "Nivel terminado con: " + time,  Toast.LENGTH_LONG).show();
+        //Stop Time of ChronometerView
+        pauseChronometerView();
+
+        Bundle bundleData = getDataFinishLevel();
+        bundleData.putInt("next_level", R.id.action_level_1_Sub_1_to_deleteFragment);
 
         StatisticsLevelDialog statisticsLevelDialog =  new StatisticsLevelDialog();
+        statisticsLevelDialog.setArguments(bundleData);
         statisticsLevelDialog.show(getActivity().getSupportFragmentManager(), "fragment_level_1");
     }
 }

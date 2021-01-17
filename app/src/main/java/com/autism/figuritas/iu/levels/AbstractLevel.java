@@ -93,20 +93,29 @@ public abstract class AbstractLevel extends Fragment
     }
 
     /**
-     * Method than get String time of ChronometerView and stop, reset ChronometerView
-     * @return A String time of ChronometerView
+     * This method return a bundle with data of level finished
+     * The data are:<p/>
+     *
+     * time: Time of ChronometerView when is finished level<br/>
+     * bonus: Bonus earned when is finished level<br/>
+     * shape_count: Number shapes in the level
+     *
+     * @return A bundle with data finished level
      */
-    public String finishChronometerViwLevel()
+    public Bundle getDataFinishLevel()
     {
-        String time;
+        Bundle bundle = new Bundle();
 
-        chronometerView.pauseTimerView();
-        time = chronometerView.getTextView().getText().toString();
-        chronometerView.resetChronometerView();
+        if(chronometerView.getTextView() != null)
+            bundle.putString("time", chronometerView.getTextView().getText().toString());
+       if(bonusView != null)
+           bundle.putInt("bonus", bonusView.getBonus());
 
-        return time != null ? time : "00:00";
+       if(monitorLevel != null)
+           bundle.putInt("shape_count", monitorLevel.getTotalShapes());
+
+        return bundle;
     }
-
 
     /**
      * Method to set total shapes available in the level
@@ -143,6 +152,16 @@ public abstract class AbstractLevel extends Fragment
     public void setImageViewToBonusView(ImageView imgBonus)
     {
         this.bonusView.setImageView(imgBonus);
+    }
+
+    /**
+     * Stop time of ChronometerView.
+     * This method should be called when the level ends.
+     */
+    public void pauseChronometerView()
+    {
+        if(chronometerView != null)
+            chronometerView.pauseTimerView();
     }
 
     @Override

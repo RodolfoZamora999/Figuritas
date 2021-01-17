@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/levels_nav_graph"
+    app:startDestination="@id/level_1_Sub_1">
+
+    <fragment
+        android:id="@+id/level_1_Sub_1"
+        android:name="com.autism.figuritas.iu.levels.level_1.Level_1"
+        android:label="fragment_level_1__sub_1"
+        tools:layout="@layout/fragment_level_1__sub_1" >
+        <action
+            android:id="@+id/action_level_1_Sub_1_to_deleteFragment"
+            app:destination="@id/deleteFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/levels_nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/deleteFragment"
+        android:name="com.autism.figuritas.iu.levels.level_2.Level_2"
+        android:label="fragment_delete"
+        tools:layout="@layout/fragment_delete" />
+</navigation>

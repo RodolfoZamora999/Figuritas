@@ -7,12 +7,12 @@
     tools:context=".iu.levels.LevelActivity">
 
     <fragment
-        android:id="@+id/fragment3"
+        android:id="@+id/fragmentHostLevels"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/level_1_nav"
+        app:navGraph="@navigation/levels_nav"
         tools:layout_editor_absoluteX="217dp"
         tools:layout_editor_absoluteY="179dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
