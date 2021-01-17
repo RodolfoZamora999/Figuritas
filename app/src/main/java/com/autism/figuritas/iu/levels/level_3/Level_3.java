@@ -1,4 +1,4 @@
-package com.autism.figuritas.iu.levels.level_1;
+package com.autism.figuritas.iu.levels.level_3;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,19 +15,14 @@ import com.autism.figuritas.iu.components.StatisticsLevelDialog;
 import com.autism.figuritas.iu.levels.AbstractLevel;
 import com.autism.figuritas.iu.utilities.DragImplementation;
 
-public class Level_1 extends AbstractLevel
+public class Level_3 extends AbstractLevel
 {
-    public Level_1()
-    {
-
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_level_1, null);
+        return inflater.inflate(R.layout.fragment_level_3, null);
     }
 
     @Override
@@ -35,12 +30,17 @@ public class Level_1 extends AbstractLevel
     {
         super.onActivityCreated(savedInstanceState);
 
+        //Very important this
         View fragmentCurrent = getView();
 
         ImageView imgCircle = fragmentCurrent.findViewById(R.id.imgCircle);
         ImageView imgSquare = fragmentCurrent.findViewById(R.id.imgSquare);
+        ImageView imgTriangle = fragmentCurrent.findViewById(R.id.imgTriangle);
+        ImageView imgPentagon = fragmentCurrent.findViewById(R.id.imgPentagon);
         ImageView imgCircleSlot = fragmentCurrent.findViewById(R.id.imgCircleSlot);
         ImageView imgSquareSlot = fragmentCurrent.findViewById(R.id.imgSquareSlot);
+        ImageView imgTriangleSlot = fragmentCurrent.findViewById(R.id.imgTriangleSlot);
+        ImageView imgPentagonSlot = fragmentCurrent.findViewById(R.id.imgPentagonSlot);
         ImageButton btnClose = fragmentCurrent.findViewById(R.id.btnExit);
         ImageButton btnReboot = fragmentCurrent.findViewById(R.id.btnReboot);
         ImageView imgTimer = fragmentCurrent.findViewById(R.id.imgTimer);
@@ -49,7 +49,7 @@ public class Level_1 extends AbstractLevel
         TextView txtBonus = fragmentCurrent.findViewById(R.id.txtBonus);
 
         //Set number shape count
-        setShapeCount(2);
+        setShapeCount(4);
 
         //Set textView for Chronometer
         setTextViewToChronometerView(txtTimer);
@@ -62,8 +62,12 @@ public class Level_1 extends AbstractLevel
         //Tag for images
         imgCircle.setTag("circle");
         imgSquare.setTag("square");
+        imgTriangle.setTag("triangle");
+        imgPentagon.setTag("pentagon");
         imgCircleSlot.setTag("circle");
         imgSquareSlot.setTag("square");
+        imgTriangleSlot.setTag("triangle");
+        imgPentagonSlot.setTag("pentagon");
 
         //Event for click event
         btnClose.setOnClickListener(view ->
@@ -78,17 +82,24 @@ public class Level_1 extends AbstractLevel
         });
 
         //Song for figures
-        imgCircle.setOnClickListener(view -> playFigureSong(FIGURES.CIRCLE));
-        imgSquare.setOnClickListener(view -> playFigureSong(FIGURES.SQUARE));
+        imgCircle.setOnClickListener(view -> playFigureSong(AbstractLevel.FIGURES.CIRCLE));
+        imgSquare.setOnClickListener(view -> playFigureSong(AbstractLevel.FIGURES.SQUARE));
+        imgTriangle.setOnClickListener(view -> playFigureSong(FIGURES.TRIANGLE));
+        imgPentagon.setOnClickListener(view -> playFigureSong(FIGURES.PENTAGON));
 
         //DragEvent for Figures
         DragImplementation drag = new DragImplementation();
         drag.setDragSuccessfulListener(this);
         imgCircleSlot.setOnDragListener(drag);
         imgSquareSlot.setOnDragListener(drag);
+        imgTriangleSlot.setOnDragListener(drag);
+        imgPentagonSlot.setOnDragListener(drag);
 
         imgCircle.setOnLongClickListener(view ->{ DragImplementation.startDrag(view); return true;});
         imgSquare.setOnLongClickListener(view -> { DragImplementation.startDrag(view); return true;});
+        imgTriangle.setOnLongClickListener(view -> { DragImplementation.startDrag(view); return true;});
+        imgPentagon.setOnLongClickListener(view -> { DragImplementation.startDrag(view); return true;});
+
     }
 
     @Override
@@ -98,10 +109,10 @@ public class Level_1 extends AbstractLevel
         pauseChronometerView();
 
         Bundle bundleData = getDataFinishLevel();
-        bundleData.putInt("next_level", R.id.action_level_1_to_level_2);
+       // bundleData.putInt("next_level", R.id.action_level_1_to_level_2);
 
         StatisticsLevelDialog statisticsLevelDialog =  new StatisticsLevelDialog();
         statisticsLevelDialog.setArguments(bundleData);
-        statisticsLevelDialog.show(getActivity().getSupportFragmentManager(), "fragment_level_1");
+        statisticsLevelDialog.show(getActivity().getSupportFragmentManager(), "fragment_level_3");
     }
 }

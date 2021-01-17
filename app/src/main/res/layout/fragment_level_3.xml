@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".iu.levels.level_2.Level_2">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/activity_level_interface"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imgCircle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.432" />
+
+    <ImageView
+        android:id="@+id/imgSquare"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="50dp"
+        android:src="@drawable/ic_square"
+        app:layout_constraintBottom_toBottomOf="@+id/imgCircle"
+        app:layout_constraintStart_toEndOf="@+id/imgCircle"
+        app:layout_constraintTop_toTopOf="@+id/imgCircle" />
+
+
+    <ImageView
+        android:id="@+id/imgTriangle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="50dp"
+        android:src="@drawable/ic_triangle"
+        app:layout_constraintBottom_toBottomOf="@+id/imgSquare"
+        app:layout_constraintStart_toEndOf="@+id/imgSquare"
+        app:layout_constraintTop_toTopOf="@+id/imgSquare"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imgPentagon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="50dp"
+        android:src="@drawable/ic_casa"
+        app:layout_constraintBottom_toBottomOf="@+id/imgTriangle"
+        app:layout_constraintStart_toEndOf="@+id/imgTriangle"
+        app:layout_constraintTop_toTopOf="@+id/imgTriangle"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imgCircleSlot"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="70dp"
+        android:src="@drawable/ic_circle_slock"
+        app:layout_constraintBottom_toBottomOf="@+id/imgPentagonSlot"
+        app:layout_constraintStart_toEndOf="@+id/imgPentagonSlot"
+        app:layout_constraintTop_toTopOf="@+id/imgPentagonSlot" />
+
+    <ImageView
+        android:id="@+id/imgSquareSlot"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="70dp"
+        android:src="@drawable/ic_square_slock"
+        app:layout_constraintBottom_toBottomOf="@+id/imgCircleSlot"
+        app:layout_constraintStart_toEndOf="@+id/imgCircleSlot"
+        app:layout_constraintTop_toTopOf="@+id/imgCircleSlot" />
+
+    <ImageView
+        android:id="@+id/imgTriangleSlot"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_triangle_slock"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.942" />
+
+    <ImageView
+        android:id="@+id/imgPentagonSlot"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="70dp"
+        android:src="@drawable/ic_casa_slock"
+        app:layout_constraintBottom_toBottomOf="@+id/imgTriangleSlot"
+        app:layout_constraintStart_toEndOf="@+id/imgTriangleSlot"
+        app:layout_constraintTop_toTopOf="@+id/imgTriangleSlot"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

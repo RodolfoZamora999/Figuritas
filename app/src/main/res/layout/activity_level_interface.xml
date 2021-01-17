@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ic_background"
-    tools:showIn="@layout/fragment_level_1__sub_1">
+    tools:showIn="@layout/fragment_level_1">
 
     <ImageButton
         android:id="@+id/btnReboot"
