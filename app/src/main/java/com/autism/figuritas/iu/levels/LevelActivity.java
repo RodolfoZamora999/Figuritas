@@ -8,14 +8,14 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import com.autism.figuritas.MyDatabaseApplication;
 import com.autism.figuritas.R;
-import com.autism.figuritas.persistence.database.Configuracion;
+import com.autism.figuritas.persistence.database.Configuration;
 import com.autism.figuritas.persistence.database.DataBase;
 import com.autism.figuritas.persistence.preferences.ConstantPreferences;
 
 public class LevelActivity extends AppCompatActivity
 {
     private MediaPlayer mediaPlayerMusic;
-    private Configuracion configuration;
+    private Configuration configuration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -97,7 +97,7 @@ public class LevelActivity extends AppCompatActivity
      * Very import: This method called after created activity in Fragment
      * Method to get Configuration
      */
-    public Configuracion getConfiguration()
+    public Configuration getConfiguration()
     {
         return configuration;
     }

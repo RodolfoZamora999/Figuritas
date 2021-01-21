@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
  * Class of User config for database
  */
 @Entity(tableName = "tb_config_user")
-public class Configuracion
+public class Configuration
 {
     @PrimaryKey
     @ColumnInfo(name = "id_Config")
@@ -34,7 +34,7 @@ public class Configuracion
     @Ignore
     public int volumeSound;
 
-    public Configuracion(long id_config, byte dificultad, boolean musica, boolean sonido, String color)
+    public Configuration(long id_config, byte dificultad, boolean musica, boolean sonido, String color)
     {
         this.id_config = id_config;
         this.dificultad = dificultad;
@@ -43,7 +43,7 @@ public class Configuracion
         this.color = color;
     }
 
-    public Configuracion()
+    public Configuration()
     {
 
     }

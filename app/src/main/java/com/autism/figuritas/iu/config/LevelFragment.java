@@ -2,10 +2,8 @@ package com.autism.figuritas.iu.config;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.autism.figuritas.MyDatabaseApplication;
 import com.autism.figuritas.R;
-import com.autism.figuritas.persistence.database.Configuracion;
+import com.autism.figuritas.persistence.database.Configuration;
 import com.autism.figuritas.persistence.database.DataBase;
 import com.autism.figuritas.persistence.preferences.ConstantPreferences;
 
@@ -203,12 +201,12 @@ public class LevelFragment extends Fragment
         boolean sound = bundleConfig.getBoolean("sounds", false);
 
         //Create config object
-        final Configuracion configuracion = new Configuracion();
-        configuracion.id_config = idConfig;
-        configuracion.color = color;
-        configuracion.musica = music;
-        configuracion.sonido = sound;
-        configuracion.dificultad = (byte)level;
+        final Configuration configuration = new Configuration();
+        configuration.id_config = idConfig;
+        configuration.color = color;
+        configuration.musica = music;
+        configuration.sonido = sound;
+        configuration.dificultad = (byte)level;
 
         //Complete config
         sharedPreferences.edit().putBoolean(ConstantPreferences.CONFIG_COMPLETE, true).apply();
@@ -218,7 +216,7 @@ public class LevelFragment extends Fragment
         dataBase.getQueryExecutor().execute(()->
         {
             //Insert first config for user
-            dataBase.getDAO().insertConfig(configuracion);
+            dataBase.getDAO().insertConfig(configuration);
 
             getActivity().runOnUiThread(()-> {
                 Toast toast = Toast.makeText(getContext(), R.string.configuracion_guardada, Toast.LENGTH_LONG);

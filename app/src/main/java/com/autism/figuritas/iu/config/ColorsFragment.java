@@ -1,7 +1,6 @@
 package com.autism.figuritas.iu.config;
 
 import android.animation.TimeInterpolator;
-import android.graphics.drawable.VectorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import com.autism.figuritas.R;
-import com.autism.figuritas.persistence.database.Configuracion;
 
 /**
  * Fragmento para la selección de los colores de la aplicación

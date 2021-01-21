@@ -15,7 +15,7 @@
     <string name="olvidaste">¿Olvidaste tu contraseña?</string>
 
     <!--Register Activity-->
-    <string name="registro_usuario">Registro de usuario</string>
+    <string name="registro_usuario">Registro de user</string>
     <string name="registrar">Registrar</string>
     <string name="descartar">Descartar</string>
     <string name="nombre">Nombre</string>
@@ -40,7 +40,7 @@
     <string name="btn_dificil">Difícil</string>
     <string name="sonido">Sonido</string>
     <string name="musicoterapia">Musicoterapia</string>
-    <string name="configuracion">Configuración</string>
+    <string name="configuration">Configuración</string>
     <string name="configuracion_guardada">¡Configuración guardada con exito!</string>
 
     <!--Name colors-->
@@ -62,7 +62,7 @@
     <string name="tiempo_total">Tiempo total</string>
     <string name="bonus_obtenido">Bonificación</string>
     <string name="total_figuras">Total de figuras</string>
-    <string name="resumen_nivel">Resumen del nivel</string>
+    <string name="resumen_nivel">Resumen del level</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

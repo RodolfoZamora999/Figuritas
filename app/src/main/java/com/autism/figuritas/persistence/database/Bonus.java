@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
  * Class of bonus for database
  */
 @Entity(tableName = "tb_bonus")
-public class Bonificacion
+public class Bonus
 {
     @PrimaryKey
     @ColumnInfo(name = "id_bonus")
@@ -17,13 +17,13 @@ public class Bonificacion
     @ColumnInfo(name = "bonus_accumulate")
     public int bonificacion_acumulada;
 
-    public Bonificacion(long id_bonificacion, int bonificacion_acumulada)
+    public Bonus(long id_bonificacion, int bonificacion_acumulada)
     {
         this.id_bonificacion = id_bonificacion;
         this.bonificacion_acumulada = bonificacion_acumulada;
     }
 
-    public Bonificacion()
+    public Bonus()
     {
 
     }

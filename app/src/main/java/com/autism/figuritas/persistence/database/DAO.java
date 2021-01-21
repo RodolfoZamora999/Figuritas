@@ -15,98 +15,98 @@ public interface DAO
 {
     //User
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    public long insertUser(Usuario usuario);
+    public long insertUser(User user);
 
     @Query("SELECT * FROM tb_user WHERE tb_user.id_user = :id_user")
-    public Usuario getUser(long id_user);
+    public User getUser(long id_user);
 
     @Update(onConflict = OnConflictStrategy.ABORT)
-    public void updateUser(Usuario usuario);
+    public void updateUser(User user);
 
     @Delete
-    public void deleteUser(Usuario usuario);
+    public void deleteUser(User user);
 
 
     //Config
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    public long insertConfig(Configuracion config);
+    public long insertConfig(Configuration config);
 
     @Query("SELECT * FROM tb_config_user WHERE tb_config_user.id_Config = :id_config")
-    public Configuracion getConfig(long id_config);
+    public Configuration getConfig(long id_config);
 
     @Update(onConflict = OnConflictStrategy.ABORT)
-    public void updateConfig(Configuracion config);
+    public void updateConfig(Configuration config);
 
     @Delete
-    public void deleteConfig(Configuracion config);
+    public void deleteConfig(Configuration config);
 
 
     //History
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    public long inserHistory(Historial historial);
+    public long insertHistory(History history);
 
     @Query("SELECT * FROM tb_history WHERE tb_history.id_history = :id_history")
-    public Historial getHistory(long id_history);
+    public History getHistory(long id_history);
 
     @Update(onConflict = OnConflictStrategy.ABORT)
-    public void updateHistory(Historial historial);
+    public void updateHistory(History history);
 
     @Delete
-    public void deleteHistory(Historial historial);
+    public void deleteHistory(History history);
 
 
     //Level
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    public long insertLevel(Nivel nivel);
+    public long insertLevel(Level level);
 
     @Query("SELECT * FROM tb_level WHERE tb_level.id_level = :id_level")
-    public Nivel getLevel(long id_level);
+    public Level getLevel(long id_level);
 
     @Update(onConflict = OnConflictStrategy.ABORT)
-    public void updateLevel(Nivel nivel);
+    public void updateLevel(Level level);
 
     @Delete
-    public void deleteLevel(Nivel nivel);
+    public void deleteLevel(Level level);
 
 
     //Notification
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    public long insertNotification(Notificacion notificacion);
+    public long insertNotification(Notification notification);
 
     @Query("SELECT * FROM tb_notification WHERE tb_notification.id_notification = :id_notification")
-    public Notificacion getNotification(long id_notification);
+    public Notification getNotification(long id_notification);
 
     @Update(onConflict = OnConflictStrategy.ABORT)
-    public void updateNotification(Notificacion notificacion);
+    public void updateNotification(Notification notification);
 
     @Delete
-    public void deleteNotification(Notificacion notificacion);
+    public void deleteNotification(Notification notification);
 
 
     //Level Complete
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    public long insertLevelComplete(NivelCompletado nivelCompletado);
+    public long insertLevelComplete(LevelComplete levelComplete);
 
     @Query("SELECT * FROM tb_level_complete WHERE tb_level_complete.id_levelcomplete = :id_level_complete")
-    public NivelCompletado getLevelComplete(long id_level_complete);
+    public LevelComplete getLevelComplete(long id_level_complete);
 
     @Update(onConflict = OnConflictStrategy.ABORT)
-    public void updateLevelComplete(NivelCompletado nivelCompletado);
+    public void updateLevelComplete(LevelComplete levelComplete);
 
     @Delete
-    public void deleteLevelComplete(NivelCompletado nivelCompletado);
+    public void deleteLevelComplete(LevelComplete levelComplete);
 
 
     //Bonus
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    public long insertBonus(Bonificacion bonificacion);
+    public long insertBonus(Bonus bonus);
 
     @Query("SELECT * FROM tb_bonus WHERE tb_bonus.id_bonus = :id_bonus")
-    public Bonificacion getBonus(long id_bonus);
+    public Bonus getBonus(long id_bonus);
 
     @Update(onConflict = OnConflictStrategy.ABORT)
-    public void updateBonus(Bonificacion bonificacion);
+    public void updateBonus(Bonus bonus);
 
     @Delete
-    public void deleteBonus(Bonificacion bonificacion);
+    public void deleteBonus(Bonus bonus);
 }

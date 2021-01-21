@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
  * Class of history for database
  */
 @Entity(tableName = "tb_history")
-public class Historial
+public class History
 {
     @PrimaryKey
     @ColumnInfo(name = "id_history")
@@ -20,14 +20,14 @@ public class Historial
     @ColumnInfo(name = "description")
     public String descripcion;
 
-    public Historial(long id_historial, int porcentaje, String descripcion)
+    public History(long id_historial, int porcentaje, String descripcion)
     {
         this.id_historial = id_historial;
         this.porcentaje = porcentaje;
         this.descripcion = descripcion;
     }
 
-    public Historial()
+    public History()
     {
 
     }

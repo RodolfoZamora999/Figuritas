@@ -4,18 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import com.autism.figuritas.R;
 import com.autism.figuritas.iu.config.ConfigActivity;
-import com.autism.figuritas.iu.config.InitConfigActivity;
 import com.autism.figuritas.iu.levels.LevelActivity;
-import com.autism.figuritas.persistence.database.Configuracion;
-
-import java.time.LocalDate;
 
 
 public class HomeSessionFragment extends Fragment

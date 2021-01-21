@@ -15,12 +15,12 @@ import com.autism.figuritas.iu.components.BonusView;
 import com.autism.figuritas.iu.components.ChronometerView;
 import com.autism.figuritas.iu.utilities.DragImplementation;
 import com.autism.figuritas.iu.utilities.MonitorLevel;
-import com.autism.figuritas.persistence.database.Configuracion;
+import com.autism.figuritas.persistence.database.Configuration;
 
 public abstract class AbstractLevel extends Fragment
         implements DragImplementation.DragSuccessfulListener, BonusView.BonusUpdateListener, MonitorLevel.TerminatedLevelListener
 {
-    private Configuracion configuration;
+    private Configuration configuration;
     private MediaPlayer mediaPlayerSound;
 
     private ChronometerView chronometerView;

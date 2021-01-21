@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
  * Class of Complete level for database
  */
 @Entity(tableName = "tb_level_complete")
-public class NivelCompletado
+public class LevelComplete
 {
     @PrimaryKey
     @ColumnInfo(name = "id_levelcomplete")
@@ -24,20 +24,20 @@ public class NivelCompletado
     @ColumnInfo(name = "observation")
     public String observacion;
 
-    @ForeignKey(entity = Nivel.class, parentColumns = "id_level", childColumns = "id_level")
+    @ForeignKey(entity = Level.class, parentColumns = "id_level", childColumns = "id_level")
     @ColumnInfo(name = "id_level")
     public long id_nivel;
 
-    @ForeignKey(entity = Historial.class, parentColumns = "id_history", childColumns = "id_history")
+    @ForeignKey(entity = History.class, parentColumns = "id_history", childColumns = "id_history")
     @ColumnInfo(name = "id_history")
     public long id_historial;
 
-    @ForeignKey(entity = Bonificacion.class, parentColumns = "id_bonus", childColumns = "id_bonus")
+    @ForeignKey(entity = Bonus.class, parentColumns = "id_bonus", childColumns = "id_bonus")
     @ColumnInfo(name = "id_bonus")
     public long id_bonificacion;
 
-    public NivelCompletado(long id_nivel_completado, String estatus, String puntuacion, String observacion,
-                           long id_nivel, long id_historial, long id_bonificacion)
+    public LevelComplete(long id_nivel_completado, String estatus, String puntuacion, String observacion,
+                         long id_nivel, long id_historial, long id_bonificacion)
     {
         this.id_nivel_completado = id_nivel_completado;
         this.estatus = estatus;
@@ -48,7 +48,7 @@ public class NivelCompletado
         this.id_bonificacion = id_bonificacion;
     }
 
-    public NivelCompletado()
+    public LevelComplete()
     {
 
     }

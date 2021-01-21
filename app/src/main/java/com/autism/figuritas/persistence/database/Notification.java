@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
  * Class of Notification for database
  */
 @Entity(tableName = "tb_notification")
-public class Notificacion
+public class Notification
 {
     @PrimaryKey
     @ColumnInfo(name = "id_notification")
@@ -18,18 +18,18 @@ public class Notificacion
     @ColumnInfo(name = "notification")
     public String notificacion;
 
-    @ForeignKey(entity = Nivel.class, parentColumns = "id_nivel", childColumns = "id_level")
+    @ForeignKey(entity = Level.class, parentColumns = "id_nivel", childColumns = "id_level")
     @ColumnInfo(name = "id_level")
     public long id_nivel;
 
-    public Notificacion(long id_notificacion, String notificacion, long id_nivel)
+    public Notification(long id_notificacion, String notificacion, long id_nivel)
     {
         this.id_notificacion = id_notificacion;
         this.notificacion = notificacion;
         this.id_nivel = id_nivel;
     }
 
-    public Notificacion()
+    public Notification()
     {
 
     }

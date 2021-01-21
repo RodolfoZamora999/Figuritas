@@ -6,8 +6,8 @@ import androidx.room.RoomDatabase;
 /**
  * Create a database
  */
-@Database(entities = {Bonificacion.class, Configuracion.class, Historial.class, Nivel.class,
-        NivelCompletado.class, Notificacion.class, Usuario.class}, version = 1)
+@Database(entities = {Bonus.class, Configuration.class, History.class, Level.class,
+        LevelComplete.class, Notification.class, User.class}, version = 1)
 public abstract class DataBase  extends RoomDatabase
 {
     public abstract DAO getDAO();

@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
  * Class of user for database
  */
 @Entity(tableName = "tb_user")
-public class Usuario
+public class User
 {
     @PrimaryKey
     @ColumnInfo(name = "id_user")
@@ -33,20 +33,20 @@ public class Usuario
     @ColumnInfo(name = "password")
     public String contrasena;
 
-    @ForeignKey(entity = Configuracion.class, parentColumns = "idConfig", childColumns = "idconfig")
+    @ForeignKey(entity = Configuration.class, parentColumns = "idConfig", childColumns = "idconfig")
     @ColumnInfo(name = "id_config")
     public long id_config;
 
-    @ForeignKey(entity = Historial.class, parentColumns = "id_history", childColumns = "id_history")
+    @ForeignKey(entity = History.class, parentColumns = "id_history", childColumns = "id_history")
     @ColumnInfo(name = "id_history")
     public long id_historial;
 
-    @ForeignKey(entity = Bonificacion.class, parentColumns = "id_bonus", childColumns = "id_bonus")
+    @ForeignKey(entity = Bonus.class, parentColumns = "id_bonus", childColumns = "id_bonus")
     @ColumnInfo(name = "id_bonus")
     public long id_bonificacion;
 
-    public Usuario(long id_usuario, String nombre, String apellido_paterno, String apellido_materno,
-                   byte edad, String email, String contrasena, long id_config, long id_historial, long id_bonificacion)
+    public User(long id_usuario, String nombre, String apellido_paterno, String apellido_materno,
+                byte edad, String email, String contrasena, long id_config, long id_historial, long id_bonificacion)
     {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
@@ -60,7 +60,7 @@ public class Usuario
         this.id_bonificacion = id_bonificacion;
     }
 
-    public Usuario()
+    public User()
     {
 
     }

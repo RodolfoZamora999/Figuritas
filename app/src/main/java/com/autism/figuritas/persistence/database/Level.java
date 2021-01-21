@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
  * Class of level for database
  */
 @Entity(tableName = "tb_level")
-public class Nivel
+public class Level
 {
     @PrimaryKey
     @ColumnInfo(name = "id_level")
@@ -21,11 +21,11 @@ public class Nivel
     @ColumnInfo(name = "description")
     public String descripcion;
 
-    @ForeignKey(entity = Configuracion.class, parentColumns = "id_Config", childColumns = "id_config")
+    @ForeignKey(entity = Configuration.class, parentColumns = "id_Config", childColumns = "id_config")
     @ColumnInfo(name = "id_config")
     public long id_config;
 
-    public Nivel(long id_nivel, String titulo, String descripcion, long id_config)
+    public Level(long id_nivel, String titulo, String descripcion, long id_config)
     {
         this.id_nivel = id_nivel;
         this.titulo = titulo;
@@ -33,7 +33,7 @@ public class Nivel
         this.id_config = id_config;
     }
 
-    public Nivel()
+    public Level()
     {
 
     }

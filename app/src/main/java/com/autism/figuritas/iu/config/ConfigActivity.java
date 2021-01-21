@@ -20,7 +20,7 @@ import android.widget.SeekBar;
 import android.widget.Toast;
 import com.autism.figuritas.MyDatabaseApplication;
 import com.autism.figuritas.R;
-import com.autism.figuritas.persistence.database.Configuracion;
+import com.autism.figuritas.persistence.database.Configuration;
 import com.autism.figuritas.persistence.database.DataBase;
 import com.autism.figuritas.persistence.preferences.ConstantPreferences;
 
@@ -141,7 +141,7 @@ public class ConfigActivity extends AppCompatActivity
      * Method to update IU config
      * @param configuration
      */
-    private void updateConfigIU(Configuracion configuration)
+    private void updateConfigIU(Configuration configuration)
     {
         this.mediaPlayerMusic.setVolume((configuration.volumeMusic * 0.01f), (configuration.volumeMusic * 0.01f));
         this.mediaPlayerSound.setVolume((configuration.volumeSound * 0.01f), (configuration.volumeSound * 0.01f));
@@ -273,7 +273,7 @@ public class ConfigActivity extends AppCompatActivity
             int volumeMusic = preferences.getInt(ConstantPreferences.MUSIC_VOLUME, 40);
             int volumeSound = preferences.getInt(ConstantPreferences.SOUND_VOLUME, 70);
 
-            final Configuracion configuration = database.getDAO().getConfig(idConfig);
+            final Configuration configuration = database.getDAO().getConfig(idConfig);
             configuration.volumeMusic = volumeMusic;
             configuration.volumeSound = volumeSound;
 
@@ -297,14 +297,14 @@ public class ConfigActivity extends AppCompatActivity
             final boolean sound = seekBarSound.getProgress() != 0;
             final String color =   currentColor != null ? currentColor : "#FFFFFF";
 
-            Configuracion configuracion = new Configuracion();
-            configuracion.id_config = config;
-            configuracion.dificultad = difficulty;
-            configuracion.musica = music;
-            configuracion.sonido = sound;
-            configuracion.color = color;
+            Configuration configuration = new Configuration();
+            configuration.id_config = config;
+            configuration.dificultad = difficulty;
+            configuration.musica = music;
+            configuration.sonido = sound;
+            configuration.color = color;
 
-            dataBase.getDAO().updateConfig(configuracion);
+            dataBase.getDAO().updateConfig(configuration);
 
             //Update Shared
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(ConfigActivity.this).edit();
