@@ -10,5 +10,6 @@ public class ConstantPreferences
     public static final String MUSIC_VOLUME = "music_volume";
     public static final String SOUND_VOLUME = "sound_volume";
     public static final String INIT_SESSION_AUTOMATIC = "init_session_automatic";
+    public static final String CURRENT_COLOR = "current_color";
 
 }

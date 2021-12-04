@@ -11,7 +11,7 @@
 
     <!--Session Activity-->
     <string name="inicio_sesion">Inicio de sesión</string>
-    <string name="Iniciar">Entrar</string>
+    <string name="Iniciar">Iniciar</string>
     <string name="olvidaste">¿Olvidaste tu contraseña?</string>
 
     <!--Register Activity-->

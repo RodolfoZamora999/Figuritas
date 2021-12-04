@@ -43,16 +43,18 @@
         app:layout_constraintTop_toBottomOf="@+id/editEmailSession" />
 
     <TextView
-        android:id="@+id/txtOlvidaste"
+        android:id="@+id/txtMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/olvidaste"
-        android:textStyle="bold"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.953" />
+        app:layout_constraintVertical_bias="0.923"
+        tools:textColor="@color/RED"
+        tools:text="El usuario no existe"/>
 
     <ImageButton
         android:id="@+id/btnShow"

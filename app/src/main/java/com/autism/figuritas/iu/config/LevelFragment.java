@@ -195,7 +195,7 @@ public class LevelFragment extends Fragment
         //Recuperate data of user
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
-        long idConfig = sharedPreferences.getLong("current_user", 0);
+        long idConfig = sharedPreferences.getLong(ConstantPreferences.CURRENT_USER, 0);
         String color = bundleConfig.getString("color", "#FFFFFF");
         boolean music = bundleConfig.getBoolean("music", false);
         boolean sound = bundleConfig.getBoolean("sounds", false);
@@ -216,7 +216,7 @@ public class LevelFragment extends Fragment
         dataBase.getQueryExecutor().execute(()->
         {
             //Insert first config for user
-            dataBase.getDAO().insertConfig(configuration);
+            dataBase.getDAO().updateConfig(configuration);
 
             getActivity().runOnUiThread(()-> {
                 Toast toast = Toast.makeText(getContext(), R.string.configuracion_guardada, Toast.LENGTH_LONG);

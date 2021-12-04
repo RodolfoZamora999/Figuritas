@@ -5,7 +5,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.autism.figuritas.MyDatabaseApplication;
 import com.autism.figuritas.R;
 import com.autism.figuritas.persistence.database.Bonus;
@@ -18,14 +20,12 @@ import java.util.Calendar;
 /**
  * Class for register a new user
  */
-public class RegisterActivity extends AppCompatActivity
-{
+public class RegisterActivity extends AppCompatActivity {
     private Button btnRegister;
     private Button btnAbort;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
@@ -34,28 +34,26 @@ public class RegisterActivity extends AppCompatActivity
         this.btnAbort = findViewById(R.id.btnDescartar);
 
         //Events
-        this.btnRegister.setOnClickListener(view-> registerUser(view));
-        this.btnAbort.setOnClickListener(view -> abortRegister(view));
+        this.btnRegister.setOnClickListener(view -> {
+            registerUser();
+            onBackPressed();
+        });
+
+        this.btnAbort.setOnClickListener(view -> abortRegister());
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
 
         hideSystemUI();
     }
 
-    /**
-     * This method register a new user in Database
-     * @param view
-     */
-    private void registerUser(View view)
-    {
+    private void registerUser() {
         //Generate id for user with time now
         Calendar calendar = Calendar.getInstance();
 
-        int miliSecond =  calendar.get(Calendar.MILLISECOND);
+        int miliSecond = calendar.get(Calendar.MILLISECOND);
         int second = calendar.get(Calendar.SECOND);
         int minute = calendar.get(Calendar.MINUTE);
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
@@ -76,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity
         long id = Long.parseLong(id_result);
 
         //Create config object
-        final Configuration configuration = new Configuration();
+        final Configuration configuration = new Configuration(); //Duplicate key
         configuration.id_config = id;
         configuration.dificultad = 1;
         configuration.musica = true;
@@ -96,12 +94,12 @@ public class RegisterActivity extends AppCompatActivity
 
         //Todo: Verificar los datos de entrada
         //Create user object
-        String name = ((EditText)findViewById(R.id.editNombre)).getText().toString();
-        String apell_p = ((EditText)findViewById(R.id.editApellidoP)).getText().toString();
-        String apell_m = ((EditText)findViewById(R.id.editApellidoM)).getText().toString();
-        byte age = Byte.parseByte(((EditText)findViewById(R.id.editEdad)).getText().toString());
-        String email = ((EditText)findViewById(R.id.editEmail)).getText().toString();
-        String password = ((EditText)findViewById(R.id.editContrasena)).getText().toString();
+        String name = ((EditText) findViewById(R.id.editNombre)).getText().toString();
+        String apell_p = ((EditText) findViewById(R.id.editApellidoP)).getText().toString();
+        String apell_m = ((EditText) findViewById(R.id.editApellidoM)).getText().toString();
+        byte age = Byte.parseByte(((EditText) findViewById(R.id.editEdad)).getText().toString());
+        String email = ((EditText) findViewById(R.id.editEmail)).getText().toString();
+        String password = ((EditText) findViewById(R.id.editContrasena)).getText().toString();
 
         final User user = new User();
         user.id_usuario = id;
@@ -116,9 +114,9 @@ public class RegisterActivity extends AppCompatActivity
         user.id_bonificacion = bonus.id_bonificacion;
 
         //Insert all objects in database
-        final MyDatabaseApplication application = (MyDatabaseApplication)getApplication();
+        final MyDatabaseApplication application = (MyDatabaseApplication) getApplication();
 
-        application.getDataBase().getQueryExecutor().execute(()->
+        application.getDataBase().getQueryExecutor().execute(() ->
         {
             application.getDataBase().getDAO().insertConfig(configuration);
             application.getDataBase().getDAO().insertHistory(history);
@@ -126,18 +124,14 @@ public class RegisterActivity extends AppCompatActivity
             application.getDataBase().getDAO().insertUser(user);
 
             //Show complete insert
-            runOnUiThread(()-> {
-                Toast.makeText(RegisterActivity.this,  "¡User registrado!", Toast.LENGTH_LONG).show();
+            runOnUiThread(() -> {
+                Toast.makeText(RegisterActivity.this, "¡User registrado!", Toast.LENGTH_LONG).show();
             });
         });
     }
 
-    /**
-     *This method cancels the registration of a new user, returns to the main activity
-     * @param view
-     */
-    private void abortRegister(View view)
-    {
+
+    private void abortRegister() {
         //Todo: Incluir mensaje de confirmación
 
         Toast.makeText(this, "Registro cancelado", Toast.LENGTH_LONG).show();
@@ -148,8 +142,7 @@ public class RegisterActivity extends AppCompatActivity
     /**
      * Do fullscreen activity
      */
-    private void hideSystemUI()
-    {
+    private void hideSystemUI() {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY

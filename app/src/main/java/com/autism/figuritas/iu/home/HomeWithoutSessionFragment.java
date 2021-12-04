@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,7 @@ import com.autism.figuritas.iu.config.InitConfigActivity;
 import com.autism.figuritas.iu.session.RegisterActivity;
 import com.autism.figuritas.iu.session.SessionActivity;
 
-public class HomeWithoutSessionFragment extends Fragment
-{
+public class HomeWithoutSessionFragment extends Fragment {
     private final int REQUEST_CODE_ENTER_SESSION = 20;
     private final int REQUEST_CODE_INIT_CONFIG = 40;
 
@@ -81,6 +81,7 @@ public class HomeWithoutSessionFragment extends Fragment
            }
            else if(resultCode == Activity.RESULT_CANCELED)
            {
+
                Toast.makeText(getContext(), "Error de sesión...", Toast.LENGTH_LONG).show();
            }
        }
@@ -88,6 +89,8 @@ public class HomeWithoutSessionFragment extends Fragment
        //Check for initConfig
         if(requestCode == REQUEST_CODE_INIT_CONFIG)
         {
+            Log.d("Config", "REQUEST_CODE_INIT_CONFIG");
+
             if(resultCode == Activity.RESULT_OK)
             {
                 Navigation.findNavController(getView()).navigate(R.id.action_homeWithoutSessionFragment_to_homeSessionFragment);

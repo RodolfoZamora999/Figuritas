@@ -20,12 +20,14 @@ public interface DAO
     @Query("SELECT * FROM tb_user WHERE tb_user.id_user = :id_user")
     public User getUser(long id_user);
 
+    @Query("SELECT * FROM tb_user WHERE tb_user.email = :email")
+    public User getUserByEmail(String email);
+
     @Update(onConflict = OnConflictStrategy.ABORT)
     public void updateUser(User user);
 
     @Delete
     public void deleteUser(User user);
-
 
     //Config
     @Insert(onConflict = OnConflictStrategy.ABORT)
@@ -53,8 +55,7 @@ public interface DAO
 
     @Delete
     public void deleteHistory(History history);
-
-
+    
     //Level
     @Insert(onConflict = OnConflictStrategy.ABORT)
     public long insertLevel(Level level);

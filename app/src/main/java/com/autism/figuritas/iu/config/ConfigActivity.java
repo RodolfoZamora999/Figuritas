@@ -291,7 +291,7 @@ public class ConfigActivity extends AppCompatActivity
         DataBase dataBase = ((MyDatabaseApplication)getApplication()).getDataBase();
         dataBase.getQueryExecutor().execute(()->
         {
-            final long config = PreferenceManager.getDefaultSharedPreferences(ConfigActivity.this).getLong("current_user", 0);
+            final long config = PreferenceManager.getDefaultSharedPreferences(ConfigActivity.this).getLong("current_user", 0) + 1;
             final byte difficulty = (byte) level;
             final boolean music = seekBarMusic.getProgress() != 0;
             final boolean sound = seekBarSound.getProgress() != 0;
