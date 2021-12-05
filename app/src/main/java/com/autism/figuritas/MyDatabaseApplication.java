@@ -34,6 +34,7 @@ public class MyDatabaseApplication extends Application
             editor.putInt(ConstantPreferences.MUSIC_VOLUME, 40);
             editor.putInt(ConstantPreferences.SOUND_VOLUME, 60);
             editor.putBoolean(ConstantPreferences.INIT_SESSION_AUTOMATIC, false);
+            editor.putString(ConstantPreferences.CURRENT_COLOR, ("#" + Integer.toHexString(getResources().getColor(R.color.AMBER))).toUpperCase());
             editor.commit();
         }
     }

@@ -2,20 +2,33 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".iu.session.SessionActivity">
 
+    <ImageView
+        android:id="@+id/imgBackgroundTitle"
+        android:layout_width="640dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:background="@color/RED" />
+
     <TextView
-        android:id="@+id/txtTitle"
+        android:id="@+id/txtTitleActivitySesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:text="@string/inicio_sesion"
-        android:textSize="32sp"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,12 +36,13 @@
         android:id="@+id/editEmailSession"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="52dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:hint="email@example.com"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTitleActivitySesion" />
 
     <EditText
         android:id="@+id/editPassword"
@@ -46,15 +60,15 @@
         android:id="@+id/txtMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
         android:fontFamily="sans-serif"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.923"
-        tools:textColor="@color/RED"
-        tools:text="El usuario no existe"/>
+        tools:text="El usuario no existe"
+        tools:textColor="@color/RED" />
 
     <ImageButton
         android:id="@+id/btnShow"
@@ -73,7 +87,7 @@
         android:id="@+id/btnIniciarSesion"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:text="@string/Iniciar"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/editPassword"

@@ -3,12 +3,19 @@ package com.autism.figuritas.iu.config;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +24,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.autism.figuritas.MyDatabaseApplication;
 import com.autism.figuritas.R;
 import com.autism.figuritas.persistence.database.Configuration;
 import com.autism.figuritas.persistence.database.DataBase;
 import com.autism.figuritas.persistence.preferences.ConstantPreferences;
+
+import org.w3c.dom.Text;
 
 public class ConfigActivity extends AppCompatActivity
 {
@@ -132,6 +142,9 @@ public class ConfigActivity extends AppCompatActivity
         //Create MediaPlayerInstance
         this.mediaPlayerMusic = MediaPlayer.create(this, R.raw.ambient_music);
         this.mediaPlayerSound = MediaPlayer.create(this, R.raw.square);
+
+
+        applyColor();
 
         //Load database config
         loadConfigDatabase();
@@ -291,7 +304,7 @@ public class ConfigActivity extends AppCompatActivity
         DataBase dataBase = ((MyDatabaseApplication)getApplication()).getDataBase();
         dataBase.getQueryExecutor().execute(()->
         {
-            final long config = PreferenceManager.getDefaultSharedPreferences(ConfigActivity.this).getLong("current_user", 0) + 1;
+            final long config = PreferenceManager.getDefaultSharedPreferences(ConfigActivity.this).getLong("current_user", 0);
             final byte difficulty = (byte) level;
             final boolean music = seekBarMusic.getProgress() != 0;
             final boolean sound = seekBarSound.getProgress() != 0;
@@ -310,7 +323,7 @@ public class ConfigActivity extends AppCompatActivity
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(ConfigActivity.this).edit();
             editor.putInt(ConstantPreferences.MUSIC_VOLUME, seekBarMusic.getProgress());
             editor.putInt(ConstantPreferences.SOUND_VOLUME, seekBarSound.getProgress());
-            editor.commit();
+            editor.putString(ConstantPreferences.CURRENT_COLOR, color.replace("#", "#FF")).apply();
 
             //Show update message
             runOnUiThread(()-> {
@@ -408,6 +421,7 @@ public class ConfigActivity extends AppCompatActivity
         builder.setPositiveButton(R.string.aceptar, (dialogInterface, i) ->
         {
             dialogInterface.dismiss();
+            applyColor();
         });
 
         //More magic
@@ -500,5 +514,106 @@ public class ConfigActivity extends AppCompatActivity
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
+
+    private void applyColor() {
+       // SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final String colorHex =   currentColor != null ? currentColor.toUpperCase().replace("#", "#FF") : PreferenceManager.
+                getDefaultSharedPreferences(this).getString(ConstantPreferences.CURRENT_COLOR, "#FFFFFFFF");
+
+        int background_color = 0;
+        int title_background = 0;
+        int button_background = 0;
+
+        switch (colorHex) {
+            case "#FFFFC107":
+                Log.d("color", "Amber section now!");
+                background_color = R.color.AMBER_BACKGROUND;
+                title_background = R.color.AMBER;
+                button_background = R.color.AMBER_ANALOGO;
+                break;
+
+            case "#FF00BCD4":
+                background_color = R.color.CYAN_BACKGROUND;
+                title_background = R.color.CYAN;
+                button_background = R.color.CYAN_ANALOGO;
+                break;
+
+            case "#FFFF4081":
+                background_color = R.color.PINK_BACKGROUND;
+                title_background = R.color.PINK;
+                button_background = R.color.PINK_ANALOGO;
+                break;
+
+            case "#FFFF8000":
+                background_color = R.color.ORANGE_BACKGROUND;
+                title_background = R.color.ORANGE;
+                button_background = R.color.ORANGE_ANALOGO;
+                break;
+
+            case "#FFF44336":
+                background_color = R.color.RED_BACKGROUND;
+                title_background = R.color.RED;
+                button_background = R.color.RED_ANALOGO;
+                break;
+
+            case "#FFACAF50":
+                background_color = R.color.GREEN_BACKGROUND;
+                title_background = R.color.GREEN;
+                button_background = R.color.GREEN_ANALOGO;
+                break;
+
+            case "#FF03A9F4":
+                background_color = R.color.LIGHT_BLUE_BACKGROUND;
+                title_background = R.color.LIGHT_BLUE;
+                button_background = R.color.LIGHT_BLUE_ANALOGO;
+                break;
+
+            case "#FFFFFFFF":
+                background_color = R.color.WHITE_BACKGROUND;
+                title_background = R.color.WHITE_COMPLEMENTATION;
+                button_background = R.color.WHITE_ANALOGO;
+                break;
+
+            default:
+                Log.d("color", "Use default color");
+                background_color = R.color.design_default_color_background;
+                title_background = R.color.design_default_color_background;
+                button_background = R.color.design_default_color_background;
+                break;
+        }
+
+        //Apply colors to components
+        Toolbar toolbar = findViewById(R.id.toolbarConfig);
+        toolbar.setBackgroundColor(getColor(title_background));
+
+        SeekBar seekBarMusic = findViewById(R.id.seekBarMusicaConfig);
+        SeekBar seekBarSound = findViewById(R.id.seekBarSoundConfig);
+
+        //seekBarMusic.setBackgroundColor(getColor(title_background));
+        //seekBarSound.setBackgroundColor(getColor(title_background));
+        seekBarMusic.setProgressTintList(ColorStateList.valueOf(getColor(title_background)));
+        seekBarSound.setProgressTintList(ColorStateList.valueOf(getColor(title_background)));
+
+        ImageButton btnSound = findViewById(R.id.btnSoundNowConfig);
+        Drawable drawable = getDrawable(R.drawable.button_background_circle);
+        drawable.setTint(getColor(title_background));
+        btnSound.setBackground(drawable);
+
+        Drawable drawableBackground = getDrawable(R.drawable.ic_backgroud_main);
+        drawableBackground.setColorFilter(getColor(background_color), PorterDuff.Mode.DST_OVER);
+
+        ViewGroup background = findViewById(R.id.background_config);
+        background.setBackground(drawableBackground);
+
+        TextView txtSound = findViewById(R.id.txtSonido);
+        TextView txtMusic = findViewById(R.id.txtMusica);
+        TextView txtColor = findViewById(R.id.txtColor);
+        TextView txtNivel = findViewById(R.id.txtNivel);
+
+        txtSound.setTextColor(getColor(title_background));
+        txtMusic.setTextColor(getColor(title_background));
+        txtColor.setTextColor(getColor(title_background));
+        txtNivel.setTextColor(getColor(title_background));
     }
 }

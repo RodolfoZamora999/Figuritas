@@ -26,8 +26,7 @@ import com.autism.figuritas.persistence.preferences.ConstantPreferences;
 /**
  * Fragmento para la configuración del nivel
  */
-public class LevelFragment extends Fragment
-{
+public class LevelFragment extends Fragment {
     private int level;
 
     private Bundle bundleConfig;
@@ -43,18 +42,16 @@ public class LevelFragment extends Fragment
 
     private TextView txtTitle;
 
-    public LevelFragment()
-    {
+    public LevelFragment() {
 
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState)
-    {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //Check arguments
-        if(getArguments() != null)
+        if (getArguments() != null)
             bundleConfig = getArguments();
         else
             bundleConfig = new Bundle();
@@ -62,14 +59,12 @@ public class LevelFragment extends Fragment
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
+                             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_level, container, false);
     }
 
     @Override
-    public void onStart()
-    {
+    public void onStart() {
         super.onStart();
 
         //References
@@ -90,8 +85,7 @@ public class LevelFragment extends Fragment
         changeColors(color);
     }
 
-    private void springAnimation(View view, int level)
-    {
+    private void springAnimation(View view, int level) {
 
         SpringAnimation springAnimationX = new SpringAnimation(view, DynamicAnimation.SCALE_X, 0.6f);
         SpringAnimation springAnimationY = new SpringAnimation(view, DynamicAnimation.SCALE_Y, 0.6f);
@@ -99,8 +93,7 @@ public class LevelFragment extends Fragment
         springAnimationX.start();
         springAnimationY.start();
 
-        if(lastView != null)
-        {
+        if (lastView != null) {
             SpringAnimation springAnimationLastX = new SpringAnimation(lastView, DynamicAnimation.SCALE_X, 1f);
             SpringAnimation springAnimationLastY = new SpringAnimation(lastView, DynamicAnimation.SCALE_Y, 1f);
 
@@ -116,16 +109,15 @@ public class LevelFragment extends Fragment
 
     /**
      * Method for change colors IU
+     *
      * @param colorHex
      */
-    private void changeColors(String colorHex)
-    {
+    private void changeColors(String colorHex) {
         int background_color = 0;
         int title_background = 0;
         int button_background = 0;
 
-        switch (colorHex)
-        {
+        switch (colorHex) {
             case "#FFC107":
                 background_color = R.color.AMBER_BACKGROUND;
                 title_background = R.color.AMBER;
@@ -187,9 +179,8 @@ public class LevelFragment extends Fragment
     }
 
     //Save config in Database
-    private void saveConfig()
-    {
-        if(bundleConfig == null)
+    private void saveConfig() {
+        if (bundleConfig == null)
             return;
 
         //Recuperate data of user
@@ -206,21 +197,23 @@ public class LevelFragment extends Fragment
         configuration.color = color;
         configuration.musica = music;
         configuration.sonido = sound;
-        configuration.dificultad = (byte)level;
+        configuration.dificultad = (byte) level;
 
         //Complete config
-        sharedPreferences.edit().putBoolean(ConstantPreferences.CONFIG_COMPLETE, true).apply();
+        sharedPreferences.edit().putBoolean(ConstantPreferences.CONFIG_COMPLETE, true).putString(
+                ConstantPreferences.CURRENT_COLOR, color.replace("#", "#FF")).apply();
+
 
         //Update configuration on database
-        DataBase dataBase = ((MyDatabaseApplication)getActivity().getApplication()).getDataBase();
-        dataBase.getQueryExecutor().execute(()->
+        DataBase dataBase = ((MyDatabaseApplication) getActivity().getApplication()).getDataBase();
+        dataBase.getQueryExecutor().execute(() ->
         {
             //Insert first config for user
             dataBase.getDAO().updateConfig(configuration);
 
-            getActivity().runOnUiThread(()-> {
+            getActivity().runOnUiThread(() -> {
                 Toast toast = Toast.makeText(getContext(), R.string.configuracion_guardada, Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 120, 100);
+                toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 120, 100);
                 toast.show();
             });
         });
