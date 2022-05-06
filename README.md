@@ -6,6 +6,8 @@ El principal enfoque de este proyecto es el poder ayudar a niños con TEA (Trast
 
 La dinámica de la aplicación es sencilla, básicamente consta de arrastrar las diferentes figuras a su slot correspondiente, a medida que se van completando las actividades el número de figuras disponibles en el tablero se van incrementando, de este modo aumentando ligeramente la dificultad. 
 
+<br>
+
 ### Características del proyecto 
 
 - Android 6.0 (API 23) versión mínima soportada
